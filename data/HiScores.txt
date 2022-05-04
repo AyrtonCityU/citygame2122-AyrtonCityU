@@ -1,0 +1,6 @@
+ayrton,15
+jess,12
+george,4
+tibi,77
+kaya,0
+Susan,15

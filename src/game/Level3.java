@@ -1,0 +1,227 @@
+package game;
+
+import city.cs.engine.*;
+import city.cs.engine.StepListener;
+import city.cs.engine.StepEvent;
+import city.cs.engine.Shape;
+import dynamicBody.Player;
+import dynamicBody.enemies.*;
+import items.Gun;
+import items.JumpBoots;
+import listeners.collisions.*;
+import listeners.step.BossEncounter;
+import listeners.step.EnemyTracker;
+import listeners.step.FlyerTracker;
+import listeners.step.LavaFlyerTracker;
+import org.jbox2d.common.Vec2;
+import staticBody.*;
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import static java.lang.Math.random;
+import static java.lang.Math.sin;
+
+public class Level3 extends GameLevel
+        implements ActionListener {
+
+    public Vec2 walkerPos1;
+    public static LavaFlyer flyer1;
+    public static Flyer flyer2;
+    public static Flyer flyer3;
+    public static Flyer flyer4;
+    public static WalkEnemy dino1;
+    public static WalkEnemy dino2;
+    public boolean hasSpawn1 = false;
+    public static Branch branch1;
+    private final Timer timer;
+    private int spawn = 0;
+    public static Warning warning;
+    public static WalkEnemy penguin1;
+    public static Snowball snowball;
+    public static Meteor meteor1;
+    public static Meteor meteor2;
+    public static DeathBall death;
+
+
+    public Level3(Game game) {
+        super(game);
+
+        getPlayer().setPosition(new Vec2(-19, 4));
+
+        Ground ground = new Ground(this);
+        ground.setPosition(new Vec2(0f, -20.5f));
+        ground.setFillColor(Color.blue);
+
+        getPlayer().setGravityScale(12);
+
+        // make the trucks
+        Truck truck1 = new Truck(this);
+        truck1.setPosition(new Vec2(-16f, -14f));
+        truck1.setAlwaysOutline(true);
+
+        Truck truck2 = new Truck(this);
+        truck2.setPosition(new Vec2(4f, -14f));
+        truck2.setAlwaysOutline(true);
+
+        Truck truck3 = new Truck(this);
+        truck3.setPosition(new Vec2(22f, -14f));
+
+
+        CoinsPickup pickup = new CoinsPickup(getPlayer());
+        getPlayer().addCollisionListener(pickup);
+        EnemyEncounter attack = new EnemyEncounter(getPlayer());
+        getPlayer().addCollisionListener(attack);
+        FloorCollision fall = new FloorCollision(getPlayer());
+        getPlayer().addCollisionListener(fall);
+
+        getPlayer().getBackpack().addItem(new Gun(getPlayer()));
+        getPlayer().getBackpack().addItem(new JumpBoots(getPlayer()));
+
+        BranchCollision branchAttack = new BranchCollision(getPlayer());
+        getPlayer().addCollisionListener(branchAttack);
+
+        truck1.addCollisionListener(branchAttack);
+        truck2.addCollisionListener(branchAttack);
+        truck3.addCollisionListener(branchAttack);
+
+
+        Shape platformShape2 = new BoxShape(100f, 0.5f);
+        StaticBody platform2 = new StaticBody(this, platformShape2);
+        platform2.setPosition(new Vec2(128f, -8f));
+        platform2.setFillColor(Color.green);
+
+
+        /*for (int i = 0; i<5;i++){
+            flyer1 = new LavaFlyer(this);
+            flyer1.Lava(flyer1);
+            flyer1.setPosition(new Vec2(16 + i*10, -2 + i*4));
+            LavaFlyerTracker lft = new LavaFlyerTracker(this, flyer1, getPlayer());
+            addStepListener(lft);
+        }*/
+
+
+       /*dino1 = new WalkEnemy(this);
+        dino1.Dino(dino1);
+        dino1.setPosition(new Vec2(27, -7));*/
+
+        /*flyer4 = new Flyer(this);
+        flyer4.Dino(flyer4);*/
+
+        /*meteor1 = new Meteor(this);
+        MeteorCollision mc = new MeteorCollision(meteor1, getPlayer());
+        meteor1.addCollisionListener(mc);
+        meteor1.setAlwaysOutline(false);*/
+
+
+        timer = new Timer(50, this);
+        timer.start();
+
+
+    }
+
+    @Override
+    public boolean isComplete() {
+        return getPlayer().getCoinsCollected() > 0;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+
+        spawn++;
+
+        if (spawn == 100) {
+            for (int i = 0; i < 3; i++) {
+                flyer1 = new LavaFlyer(this);
+                flyer1.Lava(flyer1);
+                flyer1.setPosition(new Vec2(25 + i * 6, 10));
+                LavaFlyerTracker lft = new LavaFlyerTracker(this, flyer1, getPlayer());
+                addStepListener(lft);
+            }
+        }
+
+        if (spawn == 180) {
+            dino1 = new WalkEnemy(this);
+            dino1.Dino(dino1);
+            dino1.setPosition(new Vec2(27, -7));
+            dino1.setAlwaysOutline(true);
+
+        }
+
+        if (spawn == 220) {
+            dino2 = new WalkEnemy(this);
+            dino2.Dino(dino2);
+            dino2.setPosition(new Vec2(27, -7));
+            dino2.setAlwaysOutline(true);
+        }
+        if (spawn == 280) {
+            warning = new Warning(this);
+            warning.setPosition(new Vec2(18,10));
+        }
+
+        if (spawn == 300) {
+            warning.destroy();
+            meteor1 = new Meteor(this);
+            MeteorCollision mc = new MeteorCollision(meteor1, getPlayer());
+            meteor1.addCollisionListener(mc);
+            meteor1.setPosition(new Vec2(19,30));
+        }
+        if (spawn == 330) {
+            Coins coin1 = new Coins(this);
+            coin1.setPosition(new Vec2(20f, 0f));
+
+        }
+        if (spawn ==420){
+            flyer2 = new Flyer(this);
+            flyer2.Dino(flyer2);
+
+        }
+        if (spawn == 480) {
+            flyer3 = new Flyer(this);
+            flyer3.DinoLToR(flyer3);
+
+        }
+        if (spawn == 520) {
+            warning = new Warning(this);
+            warning.setPosition(new Vec2(-18,10));
+        }
+        if (spawn == 545) {
+            warning.destroy();
+            meteor2 = new Meteor(this);
+            MeteorCollision mc = new MeteorCollision(meteor2, getPlayer());
+            meteor2.addCollisionListener(mc);
+            meteor2.setPosition(new Vec2(-16,30));
+
+        }
+
+
+        if (spawn == 650) {
+            for (int i = 0; i<5;i++){
+                flyer1 = new LavaFlyer(this);
+                flyer1.Lava(flyer1);
+                flyer1.setPosition(new Vec2(16 + i*10, -2 + i*4));
+                LavaFlyerTracker lft = new LavaFlyerTracker(this, flyer1, getPlayer());
+                addStepListener(lft);
+            }
+            flyer4 = new Flyer(this);
+            flyer4.Dino(flyer4);
+
+            System.out.println("Spawn timer 4!");
+        }
+        if (spawn == 750){
+            death = new DeathBall(this);
+        }
+        if (spawn == 950) {
+            getFlag().setPosition(new Vec2(1, -7));
+        }
+
+
+    }
+
+
+}
+
+
