@@ -76,6 +76,15 @@ public class Flyer extends Walker {
         this.ufo = ufo;
     }
 
+    public boolean evil = false;
+
+    public boolean isEvil() {
+        return evil;
+    }
+
+    public void setEvil(boolean evil) {
+        this.evil = evil;
+    }
 
 
 
@@ -140,6 +149,15 @@ public class Flyer extends Walker {
         f.setPosition(new Vec2(20, 10));
         f.setLinearVelocity(new Vec2(-5,0));
         ufo = true;
+
+    }
+
+    public void Evil(Flyer f){
+        f.removeAllImages();
+        f.addImage(new BodyImage("data/evilShip.gif", 5f));
+        f.setPosition(new Vec2(20, 10));
+        f.setLinearVelocity(new Vec2(-5,0));
+        evil = true;
 
     }
 

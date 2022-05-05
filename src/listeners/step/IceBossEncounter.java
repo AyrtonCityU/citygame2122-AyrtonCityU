@@ -12,7 +12,7 @@ import game.GameView;
 import game.Level1;
 import org.jbox2d.common.Vec2;
 
-public class BossEncounter implements StepListener {
+public class IceBossEncounter implements StepListener {
     private final GameLevel level;
     private final IceBoss enemy;
     private final Player player;
@@ -25,7 +25,7 @@ public class BossEncounter implements StepListener {
     private static final BodyImage boss =
             new BodyImage("data/iceboss.gif", 10f);
 
-    public BossEncounter(GameLevel level, IceBoss enemy, Player player) {
+    public IceBossEncounter(GameLevel level, IceBoss enemy, Player player) {
         this.level = level;
         this.enemy = enemy;
         this.player = player;

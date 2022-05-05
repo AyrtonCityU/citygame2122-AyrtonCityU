@@ -1,5 +1,6 @@
 package listeners.mkb;
 
+import city.cs.engine.BodyImage;
 import city.cs.engine.SoundClip;
 import dynamicBody.Player;
 import dynamicBody.Projectile;
@@ -20,6 +21,10 @@ public class DirectionalShooting implements MouseListener {
 
     private static SoundClip shotSound;
 
+    BodyImage shoot = new BodyImage("data/pShootR2.gif", 5.5f);
+    BodyImage shootL = new BodyImage("data/pShootL2.gif", 5.5f);
+
+
     static {
         try {
             shotSound = new SoundClip("data/shot.wav");
@@ -38,6 +43,16 @@ public class DirectionalShooting implements MouseListener {
         Vec2 worldPoint = view.viewToWorld(e.getPoint());
         if (player.getBackpack().j == "Gun") {
             shotSound.play();
+
+            if(worldPoint.x>player.getPosition().x){
+                player.removeAllImages();
+                player.addImage(shoot);
+            }
+            else if (worldPoint.x<player.getPosition().x){
+                player.removeAllImages();
+                player.addImage(shootL);
+            }
+
             player.shoot(worldPoint);
         }
         //}

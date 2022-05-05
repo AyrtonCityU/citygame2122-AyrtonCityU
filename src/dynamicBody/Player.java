@@ -80,13 +80,13 @@ public class Player extends Walker {
 
 
     private static final BodyImage image =
-            new BodyImage("data/knuckstand.gif", 6.5f);
+            new BodyImage("data/pIdle.gif", 5.5f);
 
     private static final BodyImage left =
-            new BodyImage("data/knuckrun.gif", 6.5f);
+            new BodyImage("data/pRunL.gif", 5.5f);
 
     private static final BodyImage right =
-            new BodyImage("data/knuckrunr.gif", 6.5f);
+            new BodyImage("data/pRunR.gif", 5.5f);
 
     private static final BodyImage lev4char =
             new BodyImage("data/shipRight.png", 4.5f);

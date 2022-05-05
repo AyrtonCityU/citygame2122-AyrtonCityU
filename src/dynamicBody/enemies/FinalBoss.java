@@ -4,12 +4,12 @@ import city.cs.engine.*;
 import game.GameLevel;
 import org.jbox2d.common.Vec2;
 
-public class IceBoss extends Walker {
+public class FinalBoss extends Walker {
 
     private static final Shape bossShape = new BoxShape(3f,5);
 
     private static final BodyImage boss =
-            new BodyImage("data/iceboss.gif", 10f);
+            new BodyImage("data/bossIdle.gif", 10f);
 
     public boolean isAlive() {
         return alive;
@@ -23,10 +23,10 @@ public class IceBoss extends Walker {
 
     private GameLevel level;
 
-    public IceBoss(World world){
+    public FinalBoss(World world){
         super(world, bossShape);
         addImage(boss);
-        setPosition(new Vec2(22,-6));
+        setPosition(new Vec2(5,-6));
 
     }
 

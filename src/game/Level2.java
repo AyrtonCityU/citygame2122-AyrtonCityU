@@ -1,10 +1,7 @@
 package game;
 
 import city.cs.engine.*;
-import city.cs.engine.StepListener;
-import city.cs.engine.StepEvent;
 import city.cs.engine.Shape;
-import dynamicBody.Player;
 import dynamicBody.enemies.*;
 import items.Gun;
 import items.JumpBoots;
@@ -12,9 +9,7 @@ import listeners.collisions.BranchCollision;
 import listeners.collisions.CoinsPickup;
 import listeners.collisions.EnemyEncounter;
 import listeners.collisions.FloorCollision;
-import listeners.step.BossEncounter;
-import listeners.step.EnemyTracker;
-import listeners.step.FlyerTracker;
+import listeners.step.IceBossEncounter;
 import org.jbox2d.common.Vec2;
 import staticBody.*;
 
@@ -23,9 +18,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static java.lang.Math.random;
-import static java.lang.Math.sin;
 
 public class Level2 extends GameLevel
         implements ActionListener {
@@ -234,7 +226,7 @@ public class Level2 extends GameLevel
             iceBoss.setAlwaysOutline(true);
             Shape bossDangerShape = new BoxShape(3.5f, 4f);
             SolidFixture bossDanger = new SolidFixture(iceBoss, bossDangerShape);
-            BossEncounter be = new BossEncounter(this, iceBoss, getPlayer());
+            IceBossEncounter be = new IceBossEncounter(this, iceBoss, getPlayer());
             addStepListener(be);
             iceBoss.startWalking(-8);
 

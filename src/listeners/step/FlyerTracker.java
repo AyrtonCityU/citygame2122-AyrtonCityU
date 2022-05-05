@@ -39,13 +39,22 @@ public class FlyerTracker implements StepListener {
             amplitude = 7f;
         }
 
+    if (flyer.isEvil()){
+        if (flyer.getPosition().x >18){
+            flyer.setLinearVelocity(new Vec2(-2, 0));
+        }
+        else if (flyer.getPosition().x <18){
+            flyer.setLinearVelocity(new Vec2(-50, 0));
+        }
+    }
+
 
     Vec2 pos = new Vec2(flyer.getPosition());
 
     float sin = (float) Math.sin(pos.x * frequency) * amplitude;
     pos.y = sin;
 
-    if ((!flyer.isLava())&&(!flyer.isDino())){
+    if ((!flyer.isLava())&&(!flyer.isDino())&&(!flyer.evil)){
         flyer.setPosition(pos);
     }
 

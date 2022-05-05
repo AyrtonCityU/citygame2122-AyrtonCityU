@@ -1,18 +1,11 @@
 package game;
 
 import city.cs.engine.*;
-import city.cs.engine.StepListener;
-import city.cs.engine.StepEvent;
 import city.cs.engine.Shape;
-import dynamicBody.Player;
 import dynamicBody.enemies.*;
 import items.Gun;
 import items.JumpBoots;
 import listeners.collisions.*;
-import listeners.step.BossEncounter;
-import listeners.step.EnemyTracker;
-import listeners.step.FlyerTracker;
-import listeners.step.LavaFlyerTracker;
 import org.jbox2d.common.Vec2;
 import staticBody.*;
 
@@ -22,9 +15,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static java.lang.Math.random;
-import static java.lang.Math.sin;
-
 public class Level4 extends GameLevel
         implements ActionListener {
 
@@ -32,18 +22,12 @@ public class Level4 extends GameLevel
     public static Flyer flyer1;
     public static Flyer flyer2;
     public static Flyer flyer3;
-    public static Flyer flyer4;
-    public static WalkEnemy dino1;
-    public static WalkEnemy dino2;
     public boolean hasSpawn1 = false;
     private final Timer timer;
     private int spawn = 0;
     public static Warning warning;
-    public static WalkEnemy penguin1;
-    public static Snowball snowball;
-    public static Meteor meteor1;
-    public static Meteor meteor2;
-    public static DeathBall death;
+    public static FinalBoss boss;
+
 
 
     public Level4(Game game) {
@@ -117,7 +101,7 @@ public class Level4 extends GameLevel
 
         spawn++;
 
-        if (spawn == 100) {
+      /*  if (spawn == 100) {
             for (int i = 0; i < 6; i++) {
                 flyer1 = new Flyer(this);
                 flyer1.Ufo(flyer1);
@@ -125,15 +109,21 @@ public class Level4 extends GameLevel
             }
         }
 
-        /*if (spawn == 180) {
-            dino1 = new WalkEnemy(this);
-            dino1.Dino(dino1);
-            dino1.setPosition(new Vec2(27, -7));
-            dino1.setAlwaysOutline(true);
+        if (spawn == 450) {
+           for (int i = 0; i<4; i++){
+               flyer1 = new Flyer(this);
+               flyer1.Evil(flyer1);
+               flyer1.setPosition(new Vec2(30, -10 + i*7));
+           }
 
+        }*/
+
+        if(spawn ==100){
+            boss = new FinalBoss(this);
+            boss.setGravityScale(0);
         }
 
-        if (spawn == 220) {
+        /*if (spawn == 220) {
             dino2 = new WalkEnemy(this);
             dino2.Dino(dino2);
             dino2.setPosition(new Vec2(27, -7));
@@ -181,11 +171,11 @@ public class Level4 extends GameLevel
 
         if (spawn == 750){
             death = new DeathBall(this);
-        }*/
+        }
         if (spawn == 950) {
             getFlag().setPosition(new Vec2(1, -7));
         }
-
+*/
 
     }
 

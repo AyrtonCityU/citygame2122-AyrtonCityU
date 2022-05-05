@@ -32,8 +32,8 @@ public class PlayerController implements KeyListener {
         PlayerController.pause = pause;
     }
 
-    BodyImage jump = new BodyImage("data/knuckjumpR.gif", 6.5f);
-    BodyImage still = new BodyImage("data/knuckstand.gif", 6.5f);
+    BodyImage jump = new BodyImage("data/pJump.gif", 5.5f);
+    BodyImage still = new BodyImage("data/pIdle.gif", 5.5f);
 
    BodyImage shipstill = new BodyImage("data/shipRight.png", 4.5f);
    BodyImage shipUp = new BodyImage("data/shipUp.gif", 4.5f);

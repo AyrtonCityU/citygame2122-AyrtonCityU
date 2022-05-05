@@ -1,17 +1,11 @@
 package game;
 
 import city.cs.engine.*;
-import city.cs.engine.StepListener;
-import city.cs.engine.StepEvent;
 import city.cs.engine.Shape;
-import dynamicBody.Player;
 import dynamicBody.enemies.*;
 import items.Gun;
 import items.JumpBoots;
 import listeners.collisions.*;
-import listeners.step.BossEncounter;
-import listeners.step.EnemyTracker;
-import listeners.step.FlyerTracker;
 import listeners.step.LavaFlyerTracker;
 import org.jbox2d.common.Vec2;
 import staticBody.*;
@@ -21,9 +15,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static java.lang.Math.random;
-import static java.lang.Math.sin;
 
 public class Level3 extends GameLevel
         implements ActionListener {
