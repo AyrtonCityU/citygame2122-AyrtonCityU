@@ -66,7 +66,7 @@ public class Level4 extends GameLevel
         BranchCollision branchAttack = new BranchCollision(getPlayer());
         getPlayer().addCollisionListener(branchAttack);
 
-        getPlayer().setAlwaysOutline(false);
+        getPlayer().setAlwaysOutline(true);
 
         Shape platformShape2 = new BoxShape(100f, 0.5f);
         StaticBody platform2 = new StaticBody(this, platformShape2);
@@ -112,7 +112,7 @@ public class Level4 extends GameLevel
 
         spawn++;
 
-      /*  if (spawn == 100) {
+        if (spawn == 100) {
             for (int i = 0; i < 6; i++) {
                 flyer1 = new Flyer(this);
                 flyer1.Ufo(flyer1);
@@ -127,9 +127,9 @@ public class Level4 extends GameLevel
                flyer1.setPosition(new Vec2(30, -10 + i*7));
            }
 
-        }*/
+        }
 
-        if(spawn ==10){
+        if(spawn ==650){
             boss = new FinalBoss(this);
             boss.setGravityScale(0);
             boss.setPosition(new Vec2(5,-6));
@@ -140,16 +140,16 @@ public class Level4 extends GameLevel
             addStepListener(be);
             boss.setIdle(true);
         }
-        /*if(spawn ==100){
+        if(spawn ==700){
             boss.setPosition(new Vec2(18,18));
             boss.setIdle(false);
             boss.setGrab(true);
         }
-        if(spawn == 300){
+        if(spawn == 900){
             boss.setPunch(true);
-        }*/
+        }
 
-        if(spawn == 100){
+        if(spawn == 1100){
             boss.setShoot(true);
         }
 

@@ -67,7 +67,7 @@ public class FinalBoss extends Walker {
     }
 
     public void bossShoot(FinalBoss boss, GameLevel level){
-        BossProjectile projectile = new BossProjectile(level, this);
+        BossProjectile projectile = new BossProjectile(level, boss);
         /*projectile.setPosition(new Vec2((float) (boss.getPosition().x-2), boss.getPosition().y));
         projectile.setGravityScale(0);
         projectile.setLinearVelocity(new Vec2(-20, 0));*/

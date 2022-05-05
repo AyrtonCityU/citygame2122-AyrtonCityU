@@ -2,6 +2,7 @@ package listeners.collisions;
 
 import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
+import dynamicBody.BossProjectile;
 import dynamicBody.Player;
 import dynamicBody.Projectile;
 import dynamicBody.enemies.Flyer;
@@ -41,8 +42,5 @@ public class ProjectileCollision implements CollisionListener{
         if (collisionEvent.getOtherBody() instanceof Snowball) {
             collisionEvent.getOtherBody().destroy();
         }
-/*
-        if(collisionEvent.getOtherBody() instanceof )
-*/
     }
 }
