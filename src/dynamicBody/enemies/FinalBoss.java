@@ -6,27 +6,52 @@ import org.jbox2d.common.Vec2;
 
 public class FinalBoss extends Walker {
 
-    private static final Shape bossShape = new BoxShape(3f,5);
+    private static final Shape bossShape = new BoxShape(5f,5);
 
     private static final BodyImage boss =
-            new BodyImage("data/bossIdle.gif", 10f);
+            new BodyImage("data/bossIdle.gif", 12f);
 
-    public boolean isAlive() {
-        return alive;
+    public boolean idle = true;
+
+    public boolean isIdle() {
+        return idle;
     }
 
-    public void setAlive(boolean alive) {
-        this.alive = alive;
+    public void setIdle(boolean idle) {
+        this.idle = idle;
     }
 
-    private boolean alive = true;
+    public boolean grab = false;
+
+    public boolean isGrab() {
+        return grab;
+    }
+
+    public void setGrab(boolean grab) {
+        this.grab = grab;
+    }
+
+    public boolean isPunch() {
+        return punch;
+    }
+
+    public void setPunch(boolean punch) {
+        this.punch = punch;
+    }
+
+    public boolean punch = false;
+
+
+
 
     private GameLevel level;
 
     public FinalBoss(World world){
         super(world, bossShape);
         addImage(boss);
+/*
         setPosition(new Vec2(5,-6));
+*/
 
     }
 

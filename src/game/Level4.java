@@ -6,6 +6,8 @@ import dynamicBody.enemies.*;
 import items.Gun;
 import items.JumpBoots;
 import listeners.collisions.*;
+import listeners.step.BossEncounter;
+import listeners.step.IceBossEncounter;
 import org.jbox2d.common.Vec2;
 import staticBody.*;
 
@@ -118,10 +120,26 @@ public class Level4 extends GameLevel
 
         }*/
 
-        if(spawn ==100){
+        if(spawn ==10){
             boss = new FinalBoss(this);
             boss.setGravityScale(0);
+            boss.setPosition(new Vec2(5,-6));
+/*
+            boss.setAlwaysOutline(true);
+*/
+            BossEncounter be = new BossEncounter(this, boss, getPlayer());
+            addStepListener(be);
+            boss.setIdle(true);
         }
+        /*if(spawn ==100){
+            boss.setPosition(new Vec2(18,18));
+            boss.setIdle(false);
+            boss.setGrab(true);
+        }*/
+        if(spawn == 100){
+            boss.setPunch(true);
+        }
+
 
         /*if (spawn == 220) {
             dino2 = new WalkEnemy(this);
