@@ -41,5 +41,8 @@ public class ProjectileCollision implements CollisionListener{
         if (collisionEvent.getOtherBody() instanceof Snowball) {
             collisionEvent.getOtherBody().destroy();
         }
+/*
+        if(collisionEvent.getOtherBody() instanceof )
+*/
     }
 }

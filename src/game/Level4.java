@@ -20,13 +20,22 @@ import java.awt.event.ActionListener;
 public class Level4 extends GameLevel
         implements ActionListener {
 
+    private static int spawn;
     public Vec2 walkerPos1;
     public static Flyer flyer1;
     public static Flyer flyer2;
     public static Flyer flyer3;
     public boolean hasSpawn1 = false;
     private final Timer timer;
-    private int spawn = 0;
+
+    public static int getSpawn() {
+        return spawn;
+    }
+
+    public void setSpawn(int spawn) {
+        this.spawn = spawn;
+    }
+
     public static Warning warning;
     public static FinalBoss boss;
 
@@ -135,9 +144,13 @@ public class Level4 extends GameLevel
             boss.setPosition(new Vec2(18,18));
             boss.setIdle(false);
             boss.setGrab(true);
-        }*/
-        if(spawn == 100){
+        }
+        if(spawn == 300){
             boss.setPunch(true);
+        }*/
+
+        if(spawn == 100){
+            boss.setShoot(true);
         }
 
 

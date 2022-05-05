@@ -12,7 +12,10 @@ import dynamicBody.enemies.WalkEnemy;
 import game.GameLevel;
 import game.GameView;
 import game.Level1;
+import game.Level4;
 import org.jbox2d.common.Vec2;
+
+import javax.swing.*;
 
 public class BossEncounter implements StepListener {
     private  GameLevel level;
@@ -24,9 +27,13 @@ public class BossEncounter implements StepListener {
     private boolean idleU = false;
     private boolean grabLeft = false;
     private boolean grabRight = false;
+    private boolean animation1time = false;
     private boolean pstart = false;
+    private boolean shot = true;
+    private boolean bossReturn = false;
     public float amplitude = 10;
     public float frequency = 0.3F;
+    public int animation1 = 0;
 
     private final boolean restart = false;
 
@@ -48,6 +55,9 @@ public class BossEncounter implements StepListener {
     private static final BodyImage punchR =
             new BodyImage("data/bossPunchGoR.gif", 12f);
 
+    private static final BodyImage bossGun =
+            new BodyImage("data/bossShoot.gif", 12f);
+
 
     public BossEncounter(GameLevel level, FinalBoss boss, Player player) {
         this.level = level;
@@ -59,12 +69,19 @@ public class BossEncounter implements StepListener {
 
     public void postStep(StepEvent e) {
         n++;
-
+        if (boss.getPosition().x>25){
+            boss.setPosition(new Vec2(15,0));
+            boss.setLinearVelocity(new Vec2(0,0));
+        }
         if (boss.isIdle()) {
-            if (boss.getPosition().x < 18 && boss.getPosition().y < 19 && !corner) {
-                boss.setPosition(new Vec2((float) (boss.getPosition().x + 0.1), (float) (boss.getPosition().y + 0.1)));
+            if (boss.getPosition().x>16&&bossReturn){
                 boss.removeAllImages();
                 boss.addImage(bossIdle);
+                bossReturn = false;
+            }
+            if (boss.getPosition().x < 18 && boss.getPosition().y < 19 && !corner) {
+                boss.setPosition(new Vec2((float) (boss.getPosition().x + 0.1), (float) (boss.getPosition().y + 0.1)));
+
                 if (boss.getPosition().x > 17) {
                     idleD = true;
                     corner = true;
@@ -115,6 +132,7 @@ public class BossEncounter implements StepListener {
                     boss.addImage(bossIdle);
                     boss.setIdle(true);
                     boss.setGrab(false);
+                    grabRight = false;
                 }
             }
         }
@@ -130,16 +148,45 @@ public class BossEncounter implements StepListener {
                 boss.addImage(punch);
                 boss.setLinearVelocity(new Vec2(-25, 0));
                 }
-            if (boss.getPosition().x < -10) {
+            if (boss.getPosition().x < -19) {
                 boss.setLinearVelocity(new Vec2(15, 0));
                 boss.removeAllImages();
                 boss.addImage(punchR);
-                boss.setIdle(true);
+                bossReturn = true;
                 boss.setPunch(false);
+                boss.setIdle(true);
+
+
+
             }
-            System.out.println(boss.getPosition());
         }
 
+        if (boss.isShoot()){
+            boss.removeAllImages();
+            boss.addImage(bossGun);
+            if(!animation1time){
+                animation1 = Level4.getSpawn();
+                animation1time = true;
+            }
+            if((Level4.getSpawn()==animation1+14)&&shot){
+                System.out.println(Level4.getSpawn());
+                boss.bossShoot(boss, level);
+                shot = false;
+
+            }
+
+            if(Level4.getSpawn()==animation1+21) {
+                boss.removeAllImages();
+                boss.addImage(bossIdle);
+                animation1time = false;
+                boss.setShoot(false);
+                shot = true;
+            }
+
+        }
+/*
+        System.out.println(boss.getPosition());
+*/
 
     }
 
