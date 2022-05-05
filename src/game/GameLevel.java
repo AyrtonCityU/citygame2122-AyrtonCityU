@@ -9,7 +9,7 @@ import org.jbox2d.common.Vec2;
 import staticBody.Flag;
 
 public abstract class GameLevel extends World {
-    private final Player player;
+    public static Player player;
     public Flag flag;
 
     public GameLevel(Game game){
@@ -22,7 +22,7 @@ public abstract class GameLevel extends World {
 
     }
 
-    public Player getPlayer(){
+    public static Player getPlayer(){
         return player;
     }
 

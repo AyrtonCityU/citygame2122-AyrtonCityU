@@ -3,6 +3,7 @@ package dynamicBody.enemies;
 import city.cs.engine.*;
 import dynamicBody.BossProjectile;
 import game.GameLevel;
+import game.Level4;
 import listeners.collisions.ProjectileCollision;
 import org.jbox2d.common.Vec2;
 
@@ -53,6 +54,34 @@ public class FinalBoss extends Walker {
 
     public boolean shoot = false;
 
+    public boolean isHurt() {
+        return hurt;
+    }
+
+    public void setHurt(boolean hurt) {
+        this.hurt = hurt;
+    }
+
+    public boolean hurt = false;
+
+    public static int getBossHp() {
+        return bossHp;
+    }
+
+    public static void setBossHp(int bossHp) {
+        FinalBoss.bossHp = bossHp;
+        System.out.println("Bosses health:" + bossHp);
+
+    }
+
+    public static int bossHp = 30;
+
+    public static int bulletDelay = 0;
+
+
+
+
+
 
 
     private GameLevel level;
@@ -67,10 +96,13 @@ public class FinalBoss extends Walker {
     }
 
     public void bossShoot(FinalBoss boss, GameLevel level){
-        BossProjectile projectile = new BossProjectile(level, this);
-        /*projectile.setPosition(new Vec2((float) (boss.getPosition().x-2), boss.getPosition().y));
+/*
+        Level4.getSpawn();
+*/
+        BossProjectile projectile = new BossProjectile(level, boss);
+        projectile.setPosition(new Vec2((float) (boss.getPosition().x-2), boss.getPosition().y));
         projectile.setGravityScale(0);
-        projectile.setLinearVelocity(new Vec2(-20, 0));*/
+        projectile.setLinearVelocity(new Vec2(-20, 0));
 
     }
 

@@ -2,16 +2,18 @@ package listeners.collisions;
 
 import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
+import city.cs.engine.DynamicBody;
+import dynamicBody.BossProjectile;
 import dynamicBody.Player;
-import dynamicBody.enemies.Flyer;
-import dynamicBody.enemies.IceBoss;
-import dynamicBody.enemies.LavaFlyer;
-import dynamicBody.enemies.WalkEnemy;
+import dynamicBody.enemies.*;
 import org.jbox2d.common.Vec2;
+
+import static game.Level4.boss;
 
 public class EnemyEncounter implements CollisionListener {
     private final Player player;
-    public EnemyEncounter (Player s){
+
+    public EnemyEncounter(Player s) {
         this.player = s;
     }
 
@@ -25,13 +27,13 @@ public class EnemyEncounter implements CollisionListener {
             }
         }
         if (e.getOtherBody() instanceof Flyer) {
-            player.setPlayerHealth(player.getPlayerHealth()-1);
-            player.setLinearVelocity(new Vec2(20,10));
+            player.setPlayerHealth(player.getPlayerHealth() - 1);
+            player.setLinearVelocity(new Vec2(20, 10));
             if (player.getPlayerHealth() == 0) {
                 e.getReportingBody().destroy();
             }
         }
-        if(e.getOtherBody() instanceof IceBoss){
+        if (e.getOtherBody() instanceof IceBoss) {
             e.getOtherBody().destroy();
             ((IceBoss) e.getOtherBody()).setAlive(false);
         }
@@ -39,7 +41,24 @@ public class EnemyEncounter implements CollisionListener {
             e.getOtherBody().destroy();
         }
 
+        if(e.getOtherBody() instanceof FinalBoss){
+            boss.setHurt(true);
+        }
+        if (Player.isShip()) {
+            if (e.getOtherBody() instanceof DynamicBody) {
+                if ((e.getOtherBody() instanceof FinalBoss) || (e.getOtherBody() instanceof Flyer)){
+                    player.setPlayerHealth(player.getPlayerHealth() - 1);
+                }
+                else{
+                    e.getOtherBody().destroy();
+                    player.setPlayerHealth(player.getPlayerHealth() - 1);
+
+
+                }
+            }
 
 
         }
+
+    }
 }

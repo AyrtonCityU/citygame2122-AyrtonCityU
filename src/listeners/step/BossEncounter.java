@@ -34,6 +34,8 @@ public class BossEncounter implements StepListener {
     public float amplitude = 10;
     public float frequency = 0.3F;
     public int animation1 = 0;
+    public int animation2 = 0;
+    public boolean animation2time = false;
 
     private final boolean restart = false;
 
@@ -57,6 +59,9 @@ public class BossEncounter implements StepListener {
 
     private static final BodyImage bossGun =
             new BodyImage("data/bossShoot.gif", 12f);
+
+    private static final BodyImage hurt =
+            new BodyImage("data/bossHurt.gif", 12f);
 
 
     public BossEncounter(GameLevel level, FinalBoss boss, Player player) {
@@ -184,10 +189,26 @@ public class BossEncounter implements StepListener {
             }
 
         }
+
+        if (boss.isHurt()){
+            boss.removeAllImages();
+            boss.addImage(hurt);
+        }
 /*
         System.out.println(boss.getPosition());
 */
-
+        if(boss.isHurt()){
+            if(!animation2time){
+                animation2 = Level4.getSpawn();
+                animation2time = true;
+            }
+            if (Level4.getSpawn() == animation2 +10){
+                boss.setHurt(false);
+                boss.removeAllImages();
+                boss.addImage(bossIdle);
+                animation2time = false;
+            }
+        }
     }
 
 

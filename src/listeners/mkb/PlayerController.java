@@ -5,13 +5,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 import dynamicBody.Player;
-import game.Game;
-import game.HighScoreReader;
-import game.HighScoreWriter;
-import game.NameInput;
+import dynamicBody.Projectile;
+import game.*;
 import items.JumpBoots;
+import listeners.collisions.ProjectileCollision;
 import org.jbox2d.common.Vec2;
 
 public class PlayerController implements KeyListener {
@@ -74,17 +74,18 @@ public class PlayerController implements KeyListener {
             } else if (code == KeyEvent.VK_D) {
 
                 player.startWalking(WALKING_SPEED);
-            } else if (code == KeyEvent.VK_W) {
-                if (player.isShip()) {
-                    player.setLinearVelocity(new Vec2(0, 5));
-                }
-            } else if (code == KeyEvent.VK_SPACE) {
-                    player.jump(JumpBoots.getJ());
-                    if (player.getPosition().y > 5) {
-                        player.setLinearVelocity(new Vec2(0, 20));
-                    }
+            }
+             else if (code == KeyEvent.VK_SPACE) {
+                    player.jump(45);
                     player.removeAllImages();
                     player.addImage(jump);
+                    if (player.getPosition().y > -4 && !player.isJumped() && player.getBackpack().getCurrentItem().getType()== "JumpBoots") {
+                        player.setLinearVelocity(new Vec2(0, 40));
+                        player.removeAllImages();
+                        player.addImage(jump);
+                        player.setJumped(true);
+                    }
+
 
             } else if (code == KeyEvent.VK_J) {
                 //spawn projectile
@@ -109,19 +110,19 @@ public class PlayerController implements KeyListener {
 
         if (player.isShip()){
             if (code == KeyEvent.VK_A) {
-                player.setLinearVelocity(new Vec2(-10,0));
+                player.setLinearVelocity(new Vec2(-15,0));
 
             }
             else if (code == KeyEvent.VK_D) {
-                player.setLinearVelocity(new Vec2(10,0));
+                player.setLinearVelocity(new Vec2(15,0));
             }
             else if (code == KeyEvent.VK_W) {
-                player.setLinearVelocity(new Vec2(0, 10));
+                player.setLinearVelocity(new Vec2(0, 15));
                 player.removeAllImages();
                 player.addImage(shipUp);
                 }
             else if (code == KeyEvent.VK_S) {
-                player.setLinearVelocity(new Vec2(0, -10));
+                player.setLinearVelocity(new Vec2(0, -15));
                 player.removeAllImages();
                 player.addImage(shipDown);
             }
@@ -132,7 +133,7 @@ public class PlayerController implements KeyListener {
                 player.setLinearVelocity(new Vec2(3, -3));
             }
             else if (code == KeyEvent.VK_SPACE) {
-               player.shipShoot(new Vec2(10,5));
+               player.shipShoot(player, Game.getLevel());
 
             }
              else if (code == KeyEvent.VK_Q) {
@@ -179,13 +180,15 @@ public class PlayerController implements KeyListener {
         if (!player.isShip()) {
             if (code == KeyEvent.VK_A) {
                 player.stopWalking();
-                WALKING_SPEED = 10;
+                /*WALKING_SPEED = 10;*/
                 player.removeAllImages();
                 player.addImage(still);
                 player.setLinearVelocity(new Vec2(0, 0));
             } else if (code == KeyEvent.VK_D) {
                 player.stopWalking();
+/*
                 WALKING_SPEED = 10;
+*/
                 player.removeAllImages();
                 player.addImage(still);
                 player.setLinearVelocity(new Vec2(0, 0));
@@ -213,6 +216,9 @@ public class PlayerController implements KeyListener {
             }
             else if (code == KeyEvent.VK_D) {
                 player.setLinearVelocity(new Vec2(0, 0));
+            }
+            else if (code == KeyEvent.VK_SPACE) {
+
             }
 
         }

@@ -2,13 +2,17 @@ package listeners.collisions;
 
 import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
+import dynamicBody.BossProjectile;
 import dynamicBody.Player;
 import dynamicBody.Projectile;
+import dynamicBody.enemies.FinalBoss;
 import dynamicBody.enemies.Flyer;
 import dynamicBody.enemies.Snowball;
 import dynamicBody.enemies.WalkEnemy;
 import org.jbox2d.common.Vec2;
 import staticBody.Truck;
+
+import static game.Level4.boss;
 
 public class ProjectileCollision implements CollisionListener{
     public Projectile projectile;
@@ -41,8 +45,18 @@ public class ProjectileCollision implements CollisionListener{
         if (collisionEvent.getOtherBody() instanceof Snowball) {
             collisionEvent.getOtherBody().destroy();
         }
-/*
-        if(collisionEvent.getOtherBody() instanceof )
-*/
+        if(collisionEvent.getOtherBody() instanceof Flyer){
+            collisionEvent.getOtherBody().destroy();
+            collisionEvent.getReportingBody().destroy();
+
+        }
+        if(collisionEvent.getOtherBody() instanceof FinalBoss){
+            boss.setHurt(true);
+            collisionEvent.getReportingBody().destroy();
+            FinalBoss.setBossHp(FinalBoss.getBossHp()-1);
+            if (FinalBoss.getBossHp()==0){
+                collisionEvent.getOtherBody().destroy();
+            }
+        }
     }
 }

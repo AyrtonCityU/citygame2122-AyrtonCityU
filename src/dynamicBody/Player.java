@@ -4,10 +4,14 @@ import city.cs.engine.*;
 import city.cs.engine.Shape;
 import city.cs.engine.Walker;
 import game.Game;
+import game.GameLevel;
+import game.Level4;
 import game.NameInput;
 import items.Backpack;
 import listeners.collisions.ProjectileCollision;
 import org.jbox2d.common.Vec2;
+
+import java.util.logging.Level;
 
 public class Player extends Walker {
     private Game game;
@@ -91,6 +95,18 @@ public class Player extends Walker {
     private static final BodyImage lev4char =
             new BodyImage("data/shipRight.png", 4.5f);
 
+    public static int timeFired = 0;
+
+    public boolean isJumped() {
+        return jumped;
+    }
+
+    public void setJumped(boolean jumped) {
+        this.jumped = jumped;
+    }
+
+    public boolean jumped = false;
+
 
 
 
@@ -140,7 +156,7 @@ public class Player extends Walker {
     public void shoot(Vec2 t){
 
         DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
-        ProjectileCollision projectileCollision = new ProjectileCollision(this);
+        ProjectileCollision projectileCollision = new ProjectileCollision(this );
         projectile.addCollisionListener(projectileCollision);
         Vec2 dir = t.sub(this.getPosition());
         dir.normalize();
@@ -156,15 +172,29 @@ public class Player extends Walker {
         projectile.setLinearVelocity(dir.mul(30));
 
    }
-    public void shipShoot(Vec2 t){
-        DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
+    public void shipShoot(Player player, GameLevel level){
+     /*   DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
         ProjectileCollision projectileCollision = new ProjectileCollision(this);
         projectile.addCollisionListener(projectileCollision);
         Vec2 dir = t.sub(this.getPosition());
         dir.normalize();
         projectile.setGravityScale(0);
         projectile.setPosition(this.getPosition().add(dir.mul(1f)));
-        projectile.setLinearVelocity(dir.mul(50));
+        projectile.setLinearVelocity(dir.mul(50));*/
+
+        if(Level4.getSpawn()-timeFired>5) {
+            DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2, 1));
+            ProjectileCollision projectileCollision = new ProjectileCollision(this);
+            projectile.addCollisionListener(projectileCollision);
+            projectile.addImage(new BodyImage("data/bossProjectile.gif", 1f));
+            projectile.setGravityScale(0);
+            projectile.setPosition(new Vec2((float) (player.getPosition().x + 5), player.getPosition().y));
+            projectile.setLinearVelocity(new Vec2(30, 0));
+            timeFired = Level4.getSpawn();
+        }
+
+        /*Projectile sprojectile = new Projectile(level, this);*/
+
     }
 
 

@@ -2,6 +2,7 @@ package game;
 
 import city.cs.engine.*;
 import city.cs.engine.Shape;
+import dynamicBody.Projectile;
 import dynamicBody.enemies.*;
 import items.Gun;
 import items.JumpBoots;
@@ -26,6 +27,18 @@ public class Level4 extends GameLevel
     public static Flyer flyer2;
     public static Flyer flyer3;
     public boolean hasSpawn1 = false;
+
+
+    public static boolean bossSpawn = false;
+
+    public static boolean isBossSpawn() {
+        return bossSpawn;
+    }
+
+    public void setBossSpawn(boolean bossSpawn) {
+        Level4.bossSpawn = bossSpawn;
+    }
+
     private final Timer timer;
 
     public static int getSpawn() {
@@ -39,6 +52,8 @@ public class Level4 extends GameLevel
     public static Warning warning;
     public static FinalBoss boss;
 
+    /*private final JFrame frame;
+    private final GameView view;*/
 
 
     public Level4(Game game) {
@@ -66,7 +81,12 @@ public class Level4 extends GameLevel
         BranchCollision branchAttack = new BranchCollision(getPlayer());
         getPlayer().addCollisionListener(branchAttack);
 
-        getPlayer().setAlwaysOutline(false);
+        ProjectileCollision projectileCollision2 = new ProjectileCollision(getPlayer());
+        getPlayer().addCollisionListener(projectileCollision2);
+
+/*
+        getPlayer().setAlwaysOutline(true);
+*/
 
         Shape platformShape2 = new BoxShape(100f, 0.5f);
         StaticBody platform2 = new StaticBody(this, platformShape2);
@@ -111,8 +131,10 @@ public class Level4 extends GameLevel
     public void actionPerformed(ActionEvent ae) {
 
         spawn++;
-
-      /*  if (spawn == 100) {
+        if (FinalBoss.getBossHp()==0){
+            getFlag().setPosition(new Vec2(1, -7));
+        }
+       /* if (spawn == 100) {
             for (int i = 0; i < 6; i++) {
                 flyer1 = new Flyer(this);
                 flyer1.Ufo(flyer1);
@@ -129,84 +151,35 @@ public class Level4 extends GameLevel
 
         }*/
 
-        if(spawn ==10){
+        if(spawn ==50){
+
+            bossSpawn = true;
+
+            /*view= new GameView(this, 500, 200);
+            Game.frame.add(view);*/
             boss = new FinalBoss(this);
             boss.setGravityScale(0);
             boss.setPosition(new Vec2(5,-6));
-/*
-            boss.setAlwaysOutline(true);
-*/
+
+            boss.setAlwaysOutline(false);
+
             BossEncounter be = new BossEncounter(this, boss, getPlayer());
             addStepListener(be);
             boss.setIdle(true);
         }
-        /*if(spawn ==100){
+        if(spawn ==150){
             boss.setPosition(new Vec2(18,18));
             boss.setIdle(false);
             boss.setGrab(true);
         }
         if(spawn == 300){
             boss.setPunch(true);
-        }*/
+        }
 
-        if(spawn == 100){
+        if(spawn == 500){
             boss.setShoot(true);
         }
 
-
-        /*if (spawn == 220) {
-            dino2 = new WalkEnemy(this);
-            dino2.Dino(dino2);
-            dino2.setPosition(new Vec2(27, -7));
-            dino2.setAlwaysOutline(true);
-        }
-        if (spawn == 280) {
-            warning = new Warning(this);
-            warning.setPosition(new Vec2(18,10));
-        }
-
-        if (spawn == 300) {
-            warning.destroy();
-            meteor1 = new Meteor(this);
-            MeteorCollision mc = new MeteorCollision(meteor1, getPlayer());
-            meteor1.addCollisionListener(mc);
-            meteor1.setPosition(new Vec2(19,30));
-        }
-        if (spawn == 330) {
-            Coins coin1 = new Coins(this);
-            coin1.setPosition(new Vec2(20f, 0f));
-
-        }
-        if (spawn ==420){
-            flyer2 = new Flyer(this);
-            flyer2.Dino(flyer2);
-
-        }
-        if (spawn == 480) {
-            flyer3 = new Flyer(this);
-            flyer3.DinoLToR(flyer3);
-
-        }
-        if (spawn == 520) {
-            warning = new Warning(this);
-            warning.setPosition(new Vec2(-18,10));
-        }
-        if (spawn == 545) {
-            warning.destroy();
-            meteor2 = new Meteor(this);
-            MeteorCollision mc = new MeteorCollision(meteor2, getPlayer());
-            meteor2.addCollisionListener(mc);
-            meteor2.setPosition(new Vec2(-16,30));
-
-        }
-
-        if (spawn == 750){
-            death = new DeathBall(this);
-        }
-        if (spawn == 950) {
-            getFlag().setPosition(new Vec2(1, -7));
-        }
-*/
 
     }
 

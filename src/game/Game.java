@@ -2,8 +2,10 @@ package game;
 
 import city.cs.engine.*;
 import dynamicBody.Player;
+import dynamicBody.enemies.FinalBoss;
 import listeners.mkb.DirectionalShooting;
 import listeners.mkb.PlayerController;
+import listeners.step.BossZoom;
 import listeners.step.EnemyTracker;
 import listeners.step.Tracker;
 
@@ -16,6 +18,7 @@ import javax.swing.JFrame;
 
 public class Game {
 
+    private static GameLevel level;
     public SoundClip gameMusic1;
     public SoundClip gameMusic2;
     public SoundClip gameMusic3;
@@ -29,8 +32,8 @@ public class Game {
         return pause;
     }
 
-    private GameLevel level;
-    private final GameView view;
+
+    public static GameView view;
     private Game game;
     private final PlayerController controller;
     private final DirectionalShooting mouseController;
@@ -49,9 +52,16 @@ public class Game {
 
     private boolean menuVisible;
     private final ControlPanel controlPanel;
-    private final JFrame frame;
+    public static JFrame frame;
 
 
+    public static GameLevel getLevel() {
+        return level;
+    }
+
+    public void setLevel(GameLevel level) {
+        this.level = level;
+    }
 
     /** Initialise a new Game. */
     public Game() {
@@ -147,6 +157,7 @@ public class Game {
 
         StepListener tracker = new Tracker(view, level.getPlayer());
         level.addStepListener(tracker);
+
 
 
 

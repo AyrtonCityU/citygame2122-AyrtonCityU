@@ -5,3 +5,4 @@ tibi,77
 kaya,0
 Susan,15
 Jeff,10
+dadasd,0
