@@ -28,8 +28,8 @@ public class Player extends Walker {
     public static int playerHealth;
 
 
-    public void setCoins(int coinsCollected){
-        this.coinsCollected = coinsCollected;
+    public static void setCoins(int coinsCollected){
+        Player.coinsCollected = coinsCollected;
         System.out.println("Your score is: " + coinsCollected);
     }
 

@@ -11,6 +11,8 @@ import listeners.step.Tracker;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.logging.Level;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -27,6 +29,7 @@ public class Game {
     public static void setPause() {
         pause = 1;
     }
+    public int pscore = 0;
 
     public int getPause() {
         return pause;
@@ -35,6 +38,7 @@ public class Game {
 
     public static GameView view;
     private Game game;
+
     private final PlayerController controller;
     private final DirectionalShooting mouseController;
     private boolean gameOver;
@@ -218,6 +222,7 @@ public class Game {
 
     public void goToNextLevel(){
         if (level instanceof Level1){
+            pscore = Player.getCoinsCollected();
             level.stop();
             level = new Level2(this);
             view.setWorld(level);
@@ -228,6 +233,7 @@ public class Game {
             level.start();
             setLevelBackground(2);
             levelSong = 2;
+            Player.setCoins(pscore);
             gameMusic.stop();
             try {
                 gameMusic = new SoundClip("data/lev2bgm.wav");   // Open an audio input stream
@@ -239,6 +245,7 @@ public class Game {
             }
         }
         else if (level instanceof Level2){
+            pscore = Player.getCoinsCollected();
             level.stop();
             level = new Level3(this);
             view.setWorld(level);
@@ -250,6 +257,7 @@ public class Game {
             setLevelBackground(3);
             levelSong = 3;
             gameMusic.stop();
+            Player.setCoins(pscore);
             try {
                 gameMusic = new SoundClip("data/lev3bgm.wav");   // Open an audio input stream
                 gameMusic.loop();                              // Set it to continous playback (looping)
@@ -261,6 +269,7 @@ public class Game {
 
         }
         else if (level instanceof Level3){
+            pscore = Player.getCoinsCollected();
             level.stop();
             Player.setShip(true);
             level = new Level4(this);
@@ -273,6 +282,7 @@ public class Game {
             setLevelBackground(4);
             levelSong = 4;
             gameMusic.stop();
+            Player.setCoins(pscore);
             try {
                 gameMusic = new SoundClip("data/lev4bgm.wav");   // Open an audio input stream
                 gameMusic.loop();                              // Set it to continous playback (looping)
@@ -283,6 +293,18 @@ public class Game {
             }
         }
         else if(level instanceof Level4){
+            Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+            System.out.println("Enter username");
+            String userName = myObj.nextLine();  // Read user input
+            level.getPlayer().setName(userName);
+            System.out.println("Username is: " + userName);  // Output user input
+            HighScoreWriter fw = new HighScoreWriter("data/HiScores.txt");
+            try {
+                fw.writeHighScore(level.getPlayer().getName(), level.getPlayer().getCoinsCollected());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            level.getPlayer().setHasName(true);
             System.out.println("Well done! Game complete.");
             System.exit(0);
         }

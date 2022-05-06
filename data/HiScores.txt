@@ -6,3 +6,5 @@ kaya,0
 Susan,15
 Jeff,10
 dadasd,0
+Jeff,55
+King,105

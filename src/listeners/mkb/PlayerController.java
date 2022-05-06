@@ -23,6 +23,8 @@ public class PlayerController implements KeyListener {
     private static final float RUNNING_SPEED = 40;
     private static final float JUMP_SPEED = 40;
     private static final Vec2 DOWN = new Vec2(0,-5);
+    private boolean left = false;
+    private boolean right = true;
 
     public static int isPause() {
         return pause;
@@ -33,10 +35,13 @@ public class PlayerController implements KeyListener {
     }
 
     BodyImage jump = new BodyImage("data/pJump.gif", 5.5f);
+    BodyImage jumpL = new BodyImage("data/pJumpL.gif", 5.5f);
     BodyImage still = new BodyImage("data/pIdle.gif", 5.5f);
+    BodyImage stillL = new BodyImage("data/pIdleL.gif", 5.5f);
 
-   BodyImage shipstill = new BodyImage("data/shipRight.png", 4.5f);
-   BodyImage shipUp = new BodyImage("data/shipUp.gif", 4.5f);
+
+    BodyImage shipstill = new BodyImage("data/shipRight.png", 4.5f);
+    BodyImage shipUp = new BodyImage("data/shipUp.gif", 4.5f);
     BodyImage shipDown = new BodyImage("data/shipDown.gif", 4.5f);
 
 
@@ -78,12 +83,24 @@ public class PlayerController implements KeyListener {
              else if (code == KeyEvent.VK_SPACE) {
                     player.jump(45);
                     player.removeAllImages();
-                    player.addImage(jump);
-                    if (player.getPosition().y > -4 && !player.isJumped() && player.getBackpack().getCurrentItem().getType()== "JumpBoots") {
-                        player.setLinearVelocity(new Vec2(0, 40));
-                        player.removeAllImages();
+                    if (right) {
+
                         player.addImage(jump);
-                        player.setJumped(true);
+                        if (player.getPosition().y > -4 && !player.isJumped() && player.getBackpack().getCurrentItem().getType() == "JumpBoots") {
+                            player.setLinearVelocity(new Vec2(0, 40));
+                            player.removeAllImages();
+                            player.addImage(jump);
+                            player.setJumped(true);
+                        }
+                    }
+                    else if (left){
+                        player.addImage(jumpL);
+                        if (player.getPosition().y > -4 && !player.isJumped() && player.getBackpack().getCurrentItem().getType() == "JumpBoots") {
+                            player.setLinearVelocity(new Vec2(0, 40));
+                            player.removeAllImages();
+                            player.addImage(jumpL);
+                            player.setJumped(true);
+                        }
                     }
 
 
@@ -182,8 +199,10 @@ public class PlayerController implements KeyListener {
                 player.stopWalking();
                 /*WALKING_SPEED = 10;*/
                 player.removeAllImages();
-                player.addImage(still);
+                player.addImage(stillL);
                 player.setLinearVelocity(new Vec2(0, 0));
+                left = true;
+                right = false;
             } else if (code == KeyEvent.VK_D) {
                 player.stopWalking();
 /*
@@ -192,10 +211,17 @@ public class PlayerController implements KeyListener {
                 player.removeAllImages();
                 player.addImage(still);
                 player.setLinearVelocity(new Vec2(0, 0));
+                left = false;
+                right = true;
             } else if (code == KeyEvent.VK_SPACE) {
                 player.setLinearVelocity(DOWN);
                 player.removeAllImages();
-                player.addImage(still);
+                if (right){
+                    player.addImage(still);
+                }
+                else{
+                    player.addImage(stillL);
+                }
             }
         }
 

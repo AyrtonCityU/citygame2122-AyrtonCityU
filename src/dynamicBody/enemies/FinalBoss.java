@@ -74,7 +74,7 @@ public class FinalBoss extends Walker {
 
     }
 
-    public static int bossHp = 30;
+    public static int bossHp = 1; //30;
 
     public static int bulletDelay = 0;
 

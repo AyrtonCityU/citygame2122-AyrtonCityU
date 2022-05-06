@@ -52,11 +52,21 @@ public class Level3 extends GameLevel
         // make the trucks
         Truck truck1 = new Truck(this);
         truck1.setPosition(new Vec2(-16f, -14f));
-        truck1.setAlwaysOutline(true);
+        Shape truckFront1Shape = new BoxShape(0.9f, 0.2f);
+        StaticBody truckFront1 = new StaticBody(this, truckFront1Shape);
+        truckFront1.setPosition(new Vec2(-9.5f, -12f));
+        Shape truckFront1ShapeL = new BoxShape(1f, 0.2f);
+        StaticBody truckFront1L = new StaticBody(this, truckFront1ShapeL);
+        truckFront1L.setPosition(new Vec2(-7f, -14f));
 
         Truck truck2 = new Truck(this);
         truck2.setPosition(new Vec2(4f, -14f));
-        truck2.setAlwaysOutline(true);
+        Shape truckFront2Shape = new BoxShape(0.9f, 0.2f);
+        StaticBody truckFront2 = new StaticBody(this, truckFront2Shape);
+        truckFront2.setPosition(new Vec2(10f, -12f));
+        Shape truckFront2ShapeL = new BoxShape(1f, 0.2f);
+        StaticBody truckFront2L = new StaticBody(this, truckFront2ShapeL);
+        truckFront2L.setPosition(new Vec2(13f, -14f));
 
         Truck truck3 = new Truck(this);
         truck3.setPosition(new Vec2(22f, -14f));
