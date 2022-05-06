@@ -15,7 +15,7 @@ public class Flag extends StaticBody {
     private static final Shape flagShape = new BoxShape(1f,2f);
 
     private static final BodyImage image =
-            new BodyImage("data/flag.png", 4f);
+            new BodyImage("data/portal.gif", 4f);
 
     public Flag(World world) {
         super(world, flagShape);

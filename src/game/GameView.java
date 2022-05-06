@@ -18,6 +18,7 @@ public class GameView extends UserView {
     private final Image gheart;
     private final Image ftree;
     private final Image berg;
+    private final Image rock;
     private final Image progress;
     private final Image bosshp1;
     private final Image bosshp2;
@@ -46,6 +47,7 @@ public class GameView extends UserView {
         gheart = new ImageIcon("data/gheart.png").getImage();
         ftree = new ImageIcon("data/ftree.png").getImage();
         berg = new ImageIcon("data/iceberg.png").getImage();
+        rock = new ImageIcon("data/rock.png").getImage();
         progress = new ImageIcon("data/progress.gif").getImage();
         //leaves = new ImageIcon("data/speed.gif").getImage();
         bosshp1 = new ImageIcon("data/bosshp1.png").getImage();
@@ -87,7 +89,8 @@ public class GameView extends UserView {
             g.drawImage(berg, 800, 300, 410, 500, this);
 
         } else if (Game.getLevelBackground() == 3) {
-
+            g.drawImage(rock, -200, 300, 410, 500, this);
+            g.drawImage(rock, 900, 300, 410, 500, this);
         }
 
         if (player.getPlayerHealth() == 3) {

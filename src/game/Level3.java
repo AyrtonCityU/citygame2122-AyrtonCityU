@@ -216,12 +216,10 @@ public class Level3 extends GameLevel
             death = new DeathBall(this);
         }
         if (spawn == 950) {
-            Shape shipShape = new BoxShape(7, 2);
-            StaticBody ship = new StaticBody(this, shipShape);
-            ship.setPosition(new Vec2(18f, -8f));
-            ship.addImage(new BodyImage("data/shipRight.png", 10));
-            ship.setAlwaysOutline(true);
-            getFlag().setPosition(new Vec2(18, -5));
+
+            getFlag().removeAllImages();
+            getFlag().setPosition(new Vec2(16, -5));
+            getFlag().addImage(new BodyImage("data/shipRight.png", 7));
         }
 
 
