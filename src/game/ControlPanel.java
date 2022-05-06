@@ -17,13 +17,21 @@ public class ControlPanel {
 
     private final Game game;
     private GameView view;
+    private static boolean musicPaused = false;
 
     public ControlPanel(Game game, GameView view){
         this.game = game;
         muteMusicButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game.gameMusic1.pause();
+                if (!musicPaused) {
+                    game.gameMusic.pause();
+                    musicPaused = true;
+                }
+                else if (musicPaused) {
+                    game.gameMusic.loop();
+                    musicPaused = false;
+                }
             }
         });
         pauseResumeButton.addActionListener(new ActionListener() {

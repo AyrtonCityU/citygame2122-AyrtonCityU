@@ -10,6 +10,8 @@ import dynamicBody.enemies.Flyer;
 import dynamicBody.enemies.Snowball;
 import dynamicBody.enemies.WalkEnemy;
 import org.jbox2d.common.Vec2;
+import staticBody.Coins;
+import staticBody.Hearts;
 import staticBody.Truck;
 
 import static game.Level4.boss;
@@ -38,6 +40,7 @@ public class ProjectileCollision implements CollisionListener{
         if (collisionEvent.getOtherBody() instanceof Flyer) {
             collisionEvent.getOtherBody().destroy();
             collisionEvent.getReportingBody().destroy();
+            player.setCoins(player.getCoinsCollected()+5);
         }
         if (collisionEvent.getOtherBody() instanceof Truck) {
             collisionEvent.getReportingBody().destroy();
@@ -45,18 +48,21 @@ public class ProjectileCollision implements CollisionListener{
         if (collisionEvent.getOtherBody() instanceof Snowball) {
             collisionEvent.getOtherBody().destroy();
         }
-        if(collisionEvent.getOtherBody() instanceof Flyer){
-            collisionEvent.getOtherBody().destroy();
-            collisionEvent.getReportingBody().destroy();
 
-        }
         if(collisionEvent.getOtherBody() instanceof FinalBoss){
             boss.setHurt(true);
             collisionEvent.getReportingBody().destroy();
             FinalBoss.setBossHp(FinalBoss.getBossHp()-1);
             if (FinalBoss.getBossHp()==0){
                 collisionEvent.getOtherBody().destroy();
+                player.setCoins(player.getCoinsCollected()+100);
             }
+        }
+        if (collisionEvent.getOtherBody() instanceof Coins) {
+            collisionEvent.getReportingBody().destroy();
+        }
+        if (collisionEvent.getOtherBody() instanceof Hearts) {
+            collisionEvent.getReportingBody().destroy();
         }
     }
 }

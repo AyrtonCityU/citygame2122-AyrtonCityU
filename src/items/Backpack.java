@@ -35,7 +35,10 @@ public class Backpack {
         if (j == "Boots"){
             j = "Gun";
         }
-        else{
+        else if (j== "Gun"){
+            j = "Shotgun";
+        }
+        else {
             j = "Boots";
         }
 

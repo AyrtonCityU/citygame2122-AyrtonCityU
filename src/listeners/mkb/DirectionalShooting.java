@@ -55,7 +55,20 @@ public class DirectionalShooting implements MouseListener {
 
             player.shoot(worldPoint);
         }
-        //}
+        if (player.getBackpack().getCurrentItem().getType() == "Shotgun") {
+            shotSound.play();
+
+            if(worldPoint.x>player.getPosition().x){
+                player.removeAllImages();
+                player.addImage(shoot);
+            }
+            else if (worldPoint.x<player.getPosition().x){
+                player.removeAllImages();
+                player.addImage(shootL);
+            }
+
+            player.shoot(worldPoint);
+        }
     }
 
     @Override

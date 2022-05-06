@@ -11,6 +11,7 @@ import dynamicBody.enemies.TreeFlying;
 import dynamicBody.enemies.WalkEnemy;
 import items.Gun;
 import items.JumpBoots;
+import items.Shotgun;
 import listeners.collisions.BranchCollision;
 import listeners.collisions.CoinsPickup;
 import listeners.collisions.EnemyEncounter;
@@ -95,6 +96,7 @@ public class Level1  extends GameLevel
 
             getPlayer().getBackpack().addItem(new Gun(getPlayer()));
             getPlayer().getBackpack().addItem(new JumpBoots(getPlayer()));
+            getPlayer().getBackpack().addItem(new Shotgun(getPlayer()));
 
             BranchCollision branchAttack = new BranchCollision(getPlayer());
             getPlayer().addCollisionListener(branchAttack);
@@ -147,6 +149,7 @@ public class Level1  extends GameLevel
 
             hasSpawn1 = true;
 
+
         }
         if (spawn==230 & hasSpawn1){
             warning = new Warning(this);
@@ -165,6 +168,10 @@ public class Level1  extends GameLevel
             }
 
             System.out.println("Spawn timer 2!");
+        }
+        if(spawn ==300){
+            Hearts heart1 = new Hearts(this);
+            heart1.setPosition(new Vec2(20f, 0f));
         }
         if(spawn==400){
 

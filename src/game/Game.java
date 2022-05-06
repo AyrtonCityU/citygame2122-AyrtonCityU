@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 public class Game {
 
     private static GameLevel level;
-    public SoundClip gameMusic1;
+    public SoundClip gameMusic;
     public SoundClip gameMusic2;
     public SoundClip gameMusic3;
     public SoundClip gameMusic4;
@@ -73,8 +73,8 @@ public class Game {
         Player.setShip(false);
         if (levelSong == 1) {
             try {
-                gameMusic1 = new SoundClip("data/lev1bg.wav");   // Open an audio input stream
-                gameMusic1.loop();                              // Set it to continous playback (looping)
+                gameMusic = new SoundClip("data/lev1bg.wav");   // Open an audio input stream
+                gameMusic.loop();                              // Set it to continous playback (looping)
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 //code in here will deal with any errors
                 //that might occur while loading/playing sound
@@ -228,10 +228,10 @@ public class Game {
             level.start();
             setLevelBackground(2);
             levelSong = 2;
-            gameMusic1.stop();
+            gameMusic.stop();
             try {
-                gameMusic2 = new SoundClip("data/lev2bgm.wav");   // Open an audio input stream
-                gameMusic2.loop();                              // Set it to continous playback (looping)
+                gameMusic = new SoundClip("data/lev2bgm.wav");   // Open an audio input stream
+                gameMusic.loop();                              // Set it to continous playback (looping)
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 //code in here will deal with any errors
                 //that might occur while loading/playing sound
@@ -249,10 +249,10 @@ public class Game {
             level.start();
             setLevelBackground(3);
             levelSong = 3;
-            gameMusic2.stop();
+            gameMusic.stop();
             try {
-                gameMusic3 = new SoundClip("data/lev3bgm.wav");   // Open an audio input stream
-                gameMusic3.loop();                              // Set it to continous playback (looping)
+                gameMusic = new SoundClip("data/lev3bgm.wav");   // Open an audio input stream
+                gameMusic.loop();                              // Set it to continous playback (looping)
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 //code in here will deal with any errors
                 //that might occur while loading/playing sound
@@ -272,10 +272,10 @@ public class Game {
             level.start();
             setLevelBackground(4);
             levelSong = 4;
-            gameMusic3.stop();
+            gameMusic.stop();
             try {
-                gameMusic4 = new SoundClip("data/lev4bgm.wav");   // Open an audio input stream
-                gameMusic4.loop();                              // Set it to continous playback (looping)
+                gameMusic = new SoundClip("data/lev4bgm.wav");   // Open an audio input stream
+                gameMusic.loop();                              // Set it to continous playback (looping)
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 //code in here will deal with any errors
                 //that might occur while loading/playing sound

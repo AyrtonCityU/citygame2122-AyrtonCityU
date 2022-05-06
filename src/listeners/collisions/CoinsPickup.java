@@ -5,6 +5,7 @@ import city.cs.engine.CollisionListener;
 import dynamicBody.Player;
 import dynamicBody.Projectile;
 import staticBody.Coins;
+import staticBody.Hearts;
 
 public class CoinsPickup implements CollisionListener {
     private final Player player;
@@ -17,6 +18,13 @@ public class CoinsPickup implements CollisionListener {
         if (e.getOtherBody() instanceof Coins) {
             player.setCoins(player.getCoinsCollected()+10);
             e.getOtherBody().destroy();
+        }
+        if (e.getOtherBody() instanceof Hearts) {
+            if(player.getPlayerHealth()<3){
+                player.setPlayerHealth(player.getPlayerHealth()+1);
+            }
+            e.getOtherBody().destroy();
+
         }
         if ((e.getOtherBody() instanceof Coins)&& e.getReportingBody() instanceof Projectile){
             e.getReportingBody().destroy();

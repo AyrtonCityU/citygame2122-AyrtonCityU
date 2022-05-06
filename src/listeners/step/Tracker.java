@@ -38,7 +38,9 @@ public class Tracker implements StepListener {
             player.setJumped(false);
         }
 
+/*
         System.out.println(player.getPosition());
+*/
         //System.out.println("poststep!");
     }
 

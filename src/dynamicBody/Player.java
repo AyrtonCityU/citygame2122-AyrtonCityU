@@ -14,6 +14,7 @@ import org.jbox2d.common.Vec2;
 import java.util.logging.Level;
 
 public class Player extends Walker {
+    private static int coinsCollected;
     private Game game;
     private static final Shape playerShape = new PolygonShape(0.33f,2.23f,
             -0.16f,2.22f,
@@ -26,14 +27,13 @@ public class Player extends Walker {
 
     public static int playerHealth;
 
-    public int coinsCollected;
 
     public void setCoins(int coinsCollected){
         this.coinsCollected = coinsCollected;
         System.out.println("Your score is: " + coinsCollected);
     }
 
-    public int getCoinsCollected() {
+    public static int getCoinsCollected() {
         return coinsCollected;
     }
 
@@ -107,8 +107,9 @@ public class Player extends Walker {
 
     public boolean jumped = false;
 
+    public Vec2 playerShotPos;
 
-
+    public int shotgunShells = 10;
 
     public Player(World world) {
         super(world, playerShape);
@@ -155,21 +156,63 @@ public class Player extends Walker {
 
     public void shoot(Vec2 t){
 
-        DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
-        ProjectileCollision projectileCollision = new ProjectileCollision(this );
-        projectile.addCollisionListener(projectileCollision);
-        Vec2 dir = t.sub(this.getPosition());
-        dir.normalize();
-        projectile.setGravityScale(0);
+        if(this.getBackpack().getCurrentItem().getType()=="Gun"){
+            DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
+            ProjectileCollision projectileCollision = new ProjectileCollision(this );
+            projectile.addCollisionListener(projectileCollision);
+            Vec2 dir = t.sub(this.getPosition());
+            dir.normalize();
+            projectile.setGravityScale(0);
 
-       if(direction.equals("left")) {
-            projectile.addImage(new BodyImage("data/blast.png"));
-       }
-       else{
-            projectile.addImage(new BodyImage("data/blast.png"));
+            if(direction.equals("left")) {
+                projectile.addImage(new BodyImage("data/blast.png"));
+            }
+            else{
+                projectile.addImage(new BodyImage("data/blast.png"));
+            }
+            projectile.setPosition(this.getPosition().add(dir.mul(1f)));
+            projectile.setLinearVelocity(dir.mul(30));
         }
-        projectile.setPosition(this.getPosition().add(dir.mul(1f)));
-        projectile.setLinearVelocity(dir.mul(30));
+
+        if(this.getBackpack().getCurrentItem().getType()=="Shotgun") {
+            if (shotgunShells > 0) {
+                for (int i = 1; i < 5; i++) {
+                    DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
+                    ProjectileCollision projectileCollision = new ProjectileCollision(this);
+                    projectile.addCollisionListener(projectileCollision);
+
+                    Vec2 dir = t.sub(new Vec2(this.getPosition().x + 2 * i, this.getPosition().y + 2 * i));
+                    dir.normalize();
+                    projectile.setGravityScale(0);
+
+                    if (direction.equals("left")) {
+                        projectile.addImage(new BodyImage("data/blast.png"));
+                    } else {
+                        projectile.addImage(new BodyImage("data/blast.png"));
+                    }
+                    projectile.setPosition(this.getPosition().add(dir.mul(1f)));
+                    projectile.setLinearVelocity(dir.mul(30));
+                    playerShotPos = getPosition();
+                    System.out.println(playerShotPos);
+
+               /* if ((projectile.getPosition().sub(playerShotPos)).x > 3){
+                    if ((projectile.getPosition().sub(playerShotPos)).y > 3){
+                        projectile.destroy();
+                    }
+                }*/
+
+                    if (Math.sqrt((projectile.getPosition().x * projectile.getPosition().x)
+                            + (projectile.getPosition().y * projectile.getPosition().y)) -
+                            Math.sqrt((playerShotPos.x * playerShotPos.x)
+                                    + (playerShotPos.y * playerShotPos.y)) > 0) {
+                        projectile.destroy();
+
+                    }
+                }
+                shotgunShells = shotgunShells-1;
+            }
+        }
+
 
    }
     public void shipShoot(Player player, GameLevel level){

@@ -26,6 +26,7 @@ public class GameView extends UserView {
     private final Image bosshp5;
     private final Image bosshp6;
     private final Image bosshp7;
+    private final Image score;
 
 
     // private final Image leaves;
@@ -54,8 +55,7 @@ public class GameView extends UserView {
         bosshp5 = new ImageIcon("data/bosshp5.png").getImage();
         bosshp6 = new ImageIcon("data/bosshp6.png").getImage();
         bosshp7 = new ImageIcon("data/bosshp7.png").getImage();
-
-
+        score = new ImageIcon("data/score.png").getImage();
 
 
     }
@@ -135,6 +135,9 @@ public class GameView extends UserView {
                 g.drawImage(bosshp7, 275, 420, 604, 149, this);
             }
         }
+
+        g.drawImage(score, 700, 3, 60, 50, this);
+        g.drawString(Integer.toString(Player.getCoinsCollected()), 790,30);
 
        /* if (GameLevel.getPlayer().getCoinsCollected() == 0) {
             g.drawImage(heart, 70, 0, 40, 40, this);
