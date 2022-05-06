@@ -116,7 +116,7 @@ public class Level3 extends GameLevel
 
     @Override
     public boolean isComplete() {
-        return getPlayer().getCoinsCollected() > 0;
+        return getPlayer().getCoinsCollected() > -1;
     }
 
     @Override
@@ -206,7 +206,12 @@ public class Level3 extends GameLevel
             death = new DeathBall(this);
         }
         if (spawn == 950) {
-            getFlag().setPosition(new Vec2(1, -7));
+            Shape shipShape = new BoxShape(7, 2);
+            StaticBody ship = new StaticBody(this, shipShape);
+            ship.setPosition(new Vec2(18f, -8f));
+            ship.addImage(new BodyImage("data/shipRight.png", 10));
+            ship.setAlwaysOutline(true);
+            getFlag().setPosition(new Vec2(18, -5));
         }
 
 
