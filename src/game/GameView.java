@@ -152,9 +152,6 @@ public class GameView extends UserView {
             }
         }
 
-        g.drawImage(score, 700, 3, 60, 50, this);
-        g.drawString(Integer.toString(Player.getCoinsCollected()), 790,30);
-
         if (Game.isPlot()){
             g.drawImage(plot, 0,0, 1100, 550, this);
         }
@@ -168,14 +165,18 @@ public class GameView extends UserView {
         g.drawImage(shotgun, 260, 4, 120, 50, this);*/
 
         if (Player.getBackpack().getCurrentItem().getType()=="Gun"){
-            g.drawImage(gun, 170, 2, 105, 75, this);
+            g.drawImage(gun, 170, 0, 105, 75, this);
         }
-        if (Player.getBackpack().getCurrentItem().getType()=="Shotgun"){
-            g.drawImage(shotgun, 170, 2, 140, 100, this);
+        else if (Player.getBackpack().getCurrentItem().getType()=="Shotgun"){
+            g.drawImage(shotgun, 170, 0, 140, 80, this);
         }
-        if (Player.getBackpack().getCurrentItem().getType()=="Boots"){
-            g.drawImage(gun, 170, 2, 140, 100, this);
+        else if (Player.getBackpack().getCurrentItem().getType()=="JumpBoots"){
+            g.drawImage(boots, 170, 2, 40, 50, this);
         }
+
+        g.setColor(Color.yellow);
+        g.drawImage(score, 700, 3, 60, 50, this);
+        g.drawString(Integer.toString(Player.getCoinsCollected()), 790,30);
 
 
     }

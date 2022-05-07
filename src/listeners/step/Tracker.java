@@ -49,14 +49,19 @@ public class Tracker implements StepListener {
                 invTime = Level1.getSpawn();
                 timeRecorded = true;
             }
-            player.removeAllImages();
-            player.addImage(hit);
-            if (Level1.getSpawn()-invTime == 20){
-                timeRecorded = false;
-                player.setInvincible(false);
+            if (!player.isShip()) {
                 player.removeAllImages();
-                player.addImage(idle);
+                player.addImage(hit);
+            }
+                if (Level1.getSpawn() - invTime == 20) {
+                    timeRecorded = false;
+                    player.setInvincible(false);
+                    if (!player.isShip()) {
+                        player.removeAllImages();
+                        player.addImage(idle);
+                    }
 
+                }
             }
 
         }
@@ -69,4 +74,3 @@ public class Tracker implements StepListener {
         //System.out.println("poststep!");
     }
 
-}

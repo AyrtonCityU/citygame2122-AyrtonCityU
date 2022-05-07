@@ -35,7 +35,14 @@ public class ProjectileCollision implements CollisionListener{
         if (collisionEvent.getOtherBody() instanceof Flyer) {
             collisionEvent.getOtherBody().destroy();
             collisionEvent.getReportingBody().destroy();
-            player.setCoins(player.getCoinsCollected()+5);
+            if (!player.isShip()) {
+                collisionEvent.getReportingBody().destroy();
+                player.setCoins(player.getCoinsCollected() + 5);
+            }
+            player.setCoins(player.getCoinsCollected() + 5);
+
+
+
         }
         if (collisionEvent.getOtherBody() instanceof Truck) {
             collisionEvent.getReportingBody().destroy();

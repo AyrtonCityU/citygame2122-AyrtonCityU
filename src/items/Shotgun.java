@@ -37,7 +37,6 @@ public class Shotgun extends BackpackItem {
     @Override
     public void putOn() {
         super.putOn();
-        aImage.setOffset(new Vec2(0,5.2f));
     }
 
 

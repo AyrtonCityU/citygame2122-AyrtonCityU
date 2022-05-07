@@ -161,45 +161,37 @@ public class Player extends Walker {
 
 
     public void shoot(Vec2 t){
+        if(!isShip()) {
+            if (Player.getBackpack().getCurrentItem().getType() == "Gun") {
+                DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
+                ProjectileCollision projectileCollision = new ProjectileCollision(this);
+                projectile.addCollisionListener(projectileCollision);
+                Vec2 dir = t.sub(this.getPosition());
+                dir.normalize();
+                projectile.setGravityScale(0);
+                projectile.addImage(new BodyImage("data/blast.gif"));
+                projectile.setPosition(this.getPosition().add(dir.mul(1f)));
+                projectile.setLinearVelocity(dir.mul(30));
+            } else if (Player.getBackpack().getCurrentItem().getType() == "Shotgun") {
+                if (shotgunShells > 0) {
+                    for (int i = 1; i < 5; i++) {
+                        DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
+                        ProjectileCollision projectileCollision = new ProjectileCollision(this);
+                        projectile.addCollisionListener(projectileCollision);
 
-        if(this.getBackpack().getCurrentItem().getType()=="Gun"){
-            DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
-            ProjectileCollision projectileCollision = new ProjectileCollision(this );
-            projectile.addCollisionListener(projectileCollision);
-            Vec2 dir = t.sub(this.getPosition());
-            dir.normalize();
-            projectile.setGravityScale(0);
+                        Vec2 dir = t.sub(new Vec2(this.getPosition().x + 2 * i, this.getPosition().y + 2 * i));
+                        dir.normalize();
+                        projectile.setGravityScale(0);
 
-            if(direction.equals("left")) {
-                projectile.addImage(new BodyImage("data/blast.png"));
-            }
-            else{
-                projectile.addImage(new BodyImage("data/blast.png"));
-            }
-            projectile.setPosition(this.getPosition().add(dir.mul(1f)));
-            projectile.setLinearVelocity(dir.mul(30));
-        }
-
-        if(this.getBackpack().getCurrentItem().getType()=="Shotgun") {
-            if (shotgunShells > 0) {
-                for (int i = 1; i < 5; i++) {
-                    DynamicBody projectile = new DynamicBody(this.getWorld(), new CircleShape(0.2f));
-                    ProjectileCollision projectileCollision = new ProjectileCollision(this);
-                    projectile.addCollisionListener(projectileCollision);
-
-                    Vec2 dir = t.sub(new Vec2(this.getPosition().x + 2 * i, this.getPosition().y + 2 * i));
-                    dir.normalize();
-                    projectile.setGravityScale(0);
-
-                    if (direction.equals("left")) {
-                        projectile.addImage(new BodyImage("data/blast.png"));
-                    } else {
-                        projectile.addImage(new BodyImage("data/blast.png"));
-                    }
-                    projectile.setPosition(this.getPosition().add(dir.mul(1f)));
-                    projectile.setLinearVelocity(dir.mul(30));
-                    playerShotPos = getPosition();
-                    System.out.println(playerShotPos);
+                        if (direction.equals("left")) {
+                            projectile.addImage(new BodyImage("data/blast.png"));
+                        } else {
+                            projectile.addImage(new BodyImage("data/blast.png"));
+                        }
+                        projectile.setPosition(this.getPosition().add(dir.mul(1f)));
+                        projectile.setLinearVelocity(dir.mul(30));
+                        playerShotPos = getPosition();
+                        System.out.println(playerShotPos);
 
                /* if ((projectile.getPosition().sub(playerShotPos)).x > 3){
                     if ((projectile.getPosition().sub(playerShotPos)).y > 3){
@@ -207,15 +199,16 @@ public class Player extends Walker {
                     }
                 }*/
 
-                    if (Math.sqrt((projectile.getPosition().x * projectile.getPosition().x)
-                            + (projectile.getPosition().y * projectile.getPosition().y)) -
-                            Math.sqrt((playerShotPos.x * playerShotPos.x)
-                                    + (playerShotPos.y * playerShotPos.y)) > 0) {
-                        projectile.destroy();
+                        if (Math.sqrt((projectile.getPosition().x * projectile.getPosition().x)
+                                + (projectile.getPosition().y * projectile.getPosition().y)) -
+                                Math.sqrt((playerShotPos.x * playerShotPos.x)
+                                        + (playerShotPos.y * playerShotPos.y)) > 0) {
+                            projectile.destroy();
 
+                        }
                     }
+                    shotgunShells = shotgunShells - 1;
                 }
-                shotgunShells = shotgunShells-1;
             }
         }
 
@@ -232,14 +225,15 @@ public class Player extends Walker {
         projectile.setLinearVelocity(dir.mul(50));*/
 
         if(Level4.getSpawn()-timeFired>5) {
-            DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2, 1));
+            Projectile projectile = new Projectile(getWorld(), player);
+            /*DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2, 1));
             ProjectileCollision projectileCollision = new ProjectileCollision(this);
             projectile.addCollisionListener(projectileCollision);
             projectile.addImage(new BodyImage("data/shipshot.gif", 3f));
             projectile.setGravityScale(0);
             projectile.setAlwaysOutline(false);
             projectile.setPosition(new Vec2((float) (player.getPosition().x + 5), player.getPosition().y));
-            projectile.setLinearVelocity(new Vec2(30, 0));
+            projectile.setLinearVelocity(new Vec2(30, 0));*/
             timeFired = Level4.getSpawn();
         }
 

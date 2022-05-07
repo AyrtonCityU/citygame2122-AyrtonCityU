@@ -162,7 +162,6 @@ public class GameWorld extends World
         spawn++;
 
         if (spawn==1 & !hasSpawn1) {
-            System.out.println("Spawn timer 1!");
             flyer4 = new Flyer(this);
             flyer4.setPosition(new Vec2(5, 0));
             walker2 = new WalkEnemy(this);
@@ -173,20 +172,17 @@ public class GameWorld extends World
         if (spawn==2 & hasSpawn1) {
             flyer5 = new Flyer(this);
             flyer5.setPosition(new Vec2(5, 0));
-            System.out.println("Spawn timer 2!");
         }
         if(spawn==3){
             flyer6 = new Flyer(this);
             flyer6.setPosition(new Vec2(5, 5));
             flyer6.setLinearVelocity(new Vec2( 20,5));
-            System.out.println("Spawn timer 3!");
         }
         if(spawn==4){
             for (int i = 0; i<8; i++ ) {
                 branch1 = new Branch(this);
                 branch1.setPosition(new Vec2(-15 + 5*i, (float) ((float) 100*sin(i))));
             }
-            System.out.println("Spawn timer 4!");
         }
     }
 }

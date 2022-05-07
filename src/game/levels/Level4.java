@@ -9,14 +9,18 @@ import items.Gun;
 import items.JumpBoots;
 import listeners.collisions.*;
 import listeners.step.BossEncounter;
+import listeners.step.Tracker;
 import org.jbox2d.common.Vec2;
 import staticBody.*;
 
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Level4 extends GameLevel
         implements ActionListener {
@@ -27,6 +31,7 @@ public class Level4 extends GameLevel
     public static Flyer flyer2;
     public static Flyer flyer3;
     public boolean hasSpawn1 = false;
+    private static SoundClip bossTheme;
 
 
     public static boolean bossSpawn = false;
@@ -76,13 +81,11 @@ public class Level4 extends GameLevel
         getPlayer().addCollisionListener(fall);
 
         getPlayer().getBackpack().addItem(new Gun(getPlayer()));
-        getPlayer().getBackpack().addItem(new JumpBoots(getPlayer()));
 
         BranchCollision branchAttack = new BranchCollision(getPlayer());
         getPlayer().addCollisionListener(branchAttack);
 
-        ProjectileCollision projectileCollision2 = new ProjectileCollision(getPlayer());
-        getPlayer().addCollisionListener(projectileCollision2);
+
 
 /*
         getPlayer().setAlwaysOutline(true);
@@ -94,26 +97,6 @@ public class Level4 extends GameLevel
         platform2.setFillColor(Color.green);
 
 
-        /*for (int i = 0; i<5;i++){
-            flyer1 = new LavaFlyer(this);
-            flyer1.Lava(flyer1);
-            flyer1.setPosition(new Vec2(16 + i*10, -2 + i*4));
-            LavaFlyerTracker lft = new LavaFlyerTracker(this, flyer1, getPlayer());
-            addStepListener(lft);
-        }*/
-
-
-       /*dino1 = new WalkEnemy(this);
-        dino1.Dino(dino1);
-        dino1.setPosition(new Vec2(27, -7));*/
-
-        /*flyer4 = new Flyer(this);
-        flyer4.Dino(flyer4);*/
-
-        /*meteor1 = new Meteor(this);
-        MeteorCollision mc = new MeteorCollision(meteor1, getPlayer());
-        meteor1.addCollisionListener(mc);
-        meteor1.setAlwaysOutline(false);*/
 
 
         timer = new Timer(50, this);
@@ -134,7 +117,22 @@ public class Level4 extends GameLevel
         if (FinalBoss.getBossHp()==0){
             getFlag().setPosition(new Vec2(1, -7));
         }
-       /* if (spawn == 100) {
+        if (spawn == 50 ){
+            for (int i =0; i<31;i = i+5){
+                flyer1 = new Flyer(this);
+                flyer1.Ice(flyer1);
+                flyer1.removeAllImages();
+                flyer1.addImage(new BodyImage("data/bossGrab.gif", 4));
+                flyer1.setPosition(new Vec2(30+i, i/3));
+            }
+
+        }
+        if (spawn ==175){
+             Hearts heart1 = new Hearts(this);
+             heart1.setPosition(new Vec2(20f, 0f));
+
+        }
+        if (spawn == 200) {
             for (int i = 0; i < 6; i++) {
                 flyer1 = new Flyer(this);
                 flyer1.Ufo(flyer1);
@@ -149,9 +147,39 @@ public class Level4 extends GameLevel
                flyer1.setPosition(new Vec2(30, -10 + i*7));
            }
 
-        }*/
+        }
+        if (spawn == 650) {
+            for (int i = 0; i < 6; i++) {
+                flyer1 = new Flyer(this);
+                flyer1.Ufo(flyer1);
+                flyer1.setPosition(new Vec2(25 + i * 9, 10));
+            }
 
-        if(spawn ==50){
+        }
+        if (spawn == 720){
+            Coins coin1 = new Coins(this);
+            coin1.setPosition(new Vec2(20f, 0f));
+        }
+        if (spawn == 800 ){
+            for (int i =0; i<31;i = i+5){
+                flyer1 = new Flyer(this);
+                flyer1.Ice(flyer1);
+                flyer1.removeAllImages();
+                flyer1.addImage(new BodyImage("data/bossGrab.gif", 4));
+                flyer1.setPosition(new Vec2(30+i, i/3));
+            }
+            Coins coin1 = new Coins(this);
+            coin1.setPosition(new Vec2(20f, 10f));
+        }
+
+        if(spawn ==900){
+            Game.gameMusic.pause();
+            try {
+               bossTheme= new SoundClip("data/finalTheme.wav");
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                System.out.println(e);
+            }
+            bossTheme.play();
 
             bossSpawn = true;
 
@@ -167,16 +195,40 @@ public class Level4 extends GameLevel
             addStepListener(be);
             boss.setIdle(true);
         }
-        if(spawn ==150){
+        if(spawn ==1000){
             boss.setPosition(new Vec2(18,18));
             boss.setIdle(false);
             boss.setGrab(true);
         }
-        if(spawn == 300){
+        if(spawn == 1300){
             boss.setPunch(true);
         }
 
-        if(spawn == 500){
+        if(spawn == 1500){
+            boss.setShoot(true);
+        }
+        if(spawn == 1650){
+            boss.setShoot(true);
+        }
+        if(spawn == 1700){
+            boss.setShoot(true);
+        }
+        if(spawn ==1800){
+            boss.setPosition(new Vec2(18,18));
+            boss.setIdle(false);
+            boss.setGrab(true);
+        }
+        if(spawn == 2100){
+            boss.setPunch(true);
+        }
+
+        if(spawn == 2300){
+            boss.setShoot(true);
+        }
+        if(spawn == 2350){
+            boss.setShoot(true);
+        }
+        if(spawn == 2400){
             boss.setShoot(true);
         }
 

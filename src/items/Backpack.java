@@ -42,7 +42,6 @@ public class Backpack {
             j = "Boots";
         }
 
-        getCurrentItem().putOn();
 
         System.out.println("Current item:" + getCurrentItem().getType());
     }

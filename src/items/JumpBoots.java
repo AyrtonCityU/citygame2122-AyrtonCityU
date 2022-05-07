@@ -43,7 +43,6 @@ public class JumpBoots extends BackpackItem {
     public void putOn() {
         super.putOn();
         j = 60;
-        aImage.setOffset(new Vec2(0,-1.2f));
     }
 
 

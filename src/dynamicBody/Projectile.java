@@ -12,13 +12,13 @@ public class Projectile extends DynamicBody {
 
     public Projectile(World w, Player player) {
         super(w);
-        DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2,1));
-        projectile.addImage(new BodyImage("data/bossProjectile.gif", 1f));
-        ProjectileCollision projectileCollision2 = new ProjectileCollision(player);
-        addCollisionListener(projectileCollision2);
-        projectile.setAlwaysOutline(false);
+        DynamicBody projectile = new DynamicBody(this.getWorld(), new BoxShape(2, 1));
+        ProjectileCollision projectileCollision = new ProjectileCollision(player);
+        projectile.addCollisionListener(projectileCollision);
+        projectile.addImage(new BodyImage("data/shipshot.gif", 3f));
         projectile.setGravityScale(0);
-        projectile.setPosition(new Vec2((float) (player.getPosition().x+5), player.getPosition().y));
+        projectile.setAlwaysOutline(false);
+        projectile.setPosition(new Vec2((float) (player.getPosition().x + 5), player.getPosition().y));
         projectile.setLinearVelocity(new Vec2(30, 0));
     }
 

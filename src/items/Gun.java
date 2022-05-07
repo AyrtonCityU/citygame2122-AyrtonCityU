@@ -24,7 +24,6 @@ public class Gun extends BackpackItem{
     @Override
     public void putOn() {
         super.putOn();
-        aImage.setOffset(new Vec2(2,1));
 
     }
 }

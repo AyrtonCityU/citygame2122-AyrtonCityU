@@ -41,33 +41,34 @@ public class DirectionalShooting implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Vec2 worldPoint = view.viewToWorld(e.getPoint());
-        if (player.getBackpack().j == "Gun") {
-            shotSound.play();
+        if (!player.isShip()) {
 
-            if(worldPoint.x>player.getPosition().x){
-                player.removeAllImages();
-                player.addImage(shoot);
-            }
-            else if (worldPoint.x<player.getPosition().x){
-                player.removeAllImages();
-                player.addImage(shootL);
-            }
+            if (Player.getBackpack().getCurrentItem().getType() == "Gun") {
+                shotSound.play();
 
-            player.shoot(worldPoint);
-        }
-        if (player.getBackpack().getCurrentItem().getType() == "Shotgun") {
-            shotSound.play();
+                if (worldPoint.x > player.getPosition().x) {
+                    player.removeAllImages();
+                    player.addImage(shoot);
+                } else if (worldPoint.x < player.getPosition().x) {
+                    player.removeAllImages();
+                    player.addImage(shootL);
+                }
 
-            if(worldPoint.x>player.getPosition().x){
-                player.removeAllImages();
-                player.addImage(shoot);
+                player.shoot(worldPoint);
             }
-            else if (worldPoint.x<player.getPosition().x){
-                player.removeAllImages();
-                player.addImage(shootL);
-            }
+            if (Player.getBackpack().getCurrentItem().getType() == "Shotgun") {
+                shotSound.play();
 
-            player.shoot(worldPoint);
+                if (worldPoint.x > player.getPosition().x) {
+                    player.removeAllImages();
+                    player.addImage(shoot);
+                } else if (worldPoint.x < player.getPosition().x) {
+                    player.removeAllImages();
+                    player.addImage(shootL);
+                }
+
+                player.shoot(worldPoint);
+            }
         }
     }
 

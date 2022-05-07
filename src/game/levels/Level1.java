@@ -159,7 +159,6 @@ public class Level1  extends GameLevel
 
 
         if (spawn==100) {
-            System.out.println("Spawn timer 1!");
 
             flyer1 = new Flyer(this);
             flyer2 = new Flyer(this);
@@ -189,7 +188,6 @@ public class Level1  extends GameLevel
                 branch1.setPosition(new Vec2((float) (-8 + 4*random), (float) ((float) 100*sin(i))));
             }
 
-            System.out.println("Spawn timer 2!");
         }
         if(spawn ==300){
             Hearts heart1 = new Hearts(this);
@@ -209,7 +207,10 @@ public class Level1  extends GameLevel
             flyer5.setPosition(new Vec2(25, 0));
 
 
-            System.out.println("Spawn timer 3!");
+        }
+        if(spawn == 550){
+            Coins coin1 = new Coins(this);
+            coin1.setPosition(new Vec2(35f, 0f));
         }
         if (spawn == 600){
             walker2 = new WalkEnemy(this);
@@ -228,7 +229,6 @@ public class Level1  extends GameLevel
             tree.setPosition(new Vec2(20, -5));
             tree.setAlwaysOutline(true);
 
-            System.out.println("Spawn timer 4!");
         }
         if(spawn==720) {
             getFlag().setPosition(new Vec2(0,-7));

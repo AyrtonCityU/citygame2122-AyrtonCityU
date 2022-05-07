@@ -110,9 +110,7 @@ public class BossEncounter implements StepListener {
                 boss.removeAllImages();
                 boss.addImage(grab);
                 boss.setPosition(pos);
-                System.out.println("you got here");
                 if (boss.getPosition().x < -19) {
-                    System.out.println("go right");
                     grabRight = true;
                 }
             }

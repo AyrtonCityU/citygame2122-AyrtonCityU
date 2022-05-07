@@ -160,7 +160,6 @@ public class Level2 extends GameLevel
         spawn++;
 
         if (spawn==100) {
-            System.out.println("Spawn timer 1!");
             flyer1 = new Flyer(this);
             flyer1.Ice(flyer1);
             flyer2 = new Flyer(this);
@@ -173,6 +172,10 @@ public class Level2 extends GameLevel
             penguin2.Penguin(penguin2);
             penguin2.setPosition(new Vec2(45, -7));
 
+        }
+        if (spawn ==200){
+            Coins coin1 = new Coins(this);
+            coin1.setPosition(new Vec2(35f, 0f));
         }
         if (spawn==230 ){
             warning = new Warning(this);
@@ -187,16 +190,21 @@ public class Level2 extends GameLevel
             }
 
         }
+        if (spawn == 300){
+            Hearts heart1 = new Hearts(this);
+            heart1.setPosition(new Vec2(20f, 0f));
+        }
         if(spawn==350) {
             Coins coin1 = new Coins(this);
             coin1.setPosition(new Vec2(20f, 0f));
             penguin4 = new WalkEnemy(this);
             penguin4.fPenguin(penguin4);
-            System.out.println("Spawn timer 3!");
         }
         if (spawn==370){
             penguin5 = new WalkEnemy(this);
             penguin5.fPenguin(penguin5);
+            Coins coin1 = new Coins(this);
+            coin1.setPosition(new Vec2(35f, 0f));
         }
         if (spawn == 420){
             Coins coin1 = new Coins(this);
@@ -222,6 +230,10 @@ public class Level2 extends GameLevel
                 snowball.setPosition(new Vec2((float) (Math.random()*25)-25,10+i*2));
             }
         }
+        if (spawn == 560){
+            Hearts heart1 = new Hearts(this);
+            heart1.setPosition(new Vec2(20f, 0f));
+        }
         if (spawn == 580){
             bwarning = new Warning(this);
             bwarning.setPosition(new Vec2(5,0));
@@ -235,7 +247,6 @@ public class Level2 extends GameLevel
             iceBoss = new IceBoss(this);
             iceBoss.setAlwaysOutline(false);
             new BossDanger(iceBoss);
-            iceBoss.setAlwaysOutline(true);
             Shape bossDangerShape = new BoxShape(3.5f, 4f);
             SolidFixture bossDanger = new SolidFixture(iceBoss, bossDangerShape);
             IceBossEncounter be = new IceBossEncounter(this, iceBoss, getPlayer());
@@ -247,7 +258,6 @@ public class Level2 extends GameLevel
 
         if(spawn==650){
 
-            System.out.println("Spawn timer 4!");
         }
         if(spawn==700) {
             getFlag().setPosition(new Vec2(0,-7));

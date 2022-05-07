@@ -145,12 +145,14 @@ public class Level3 extends GameLevel
                 addStepListener(lft);
             }
         }
-
+        if (spawn == 120){
+            Hearts heart1 = new Hearts(this);
+            heart1.setPosition(new Vec2(20f, 0f));
+        }
         if (spawn == 180) {
             dino1 = new WalkEnemy(this);
             dino1.Dino(dino1);
             dino1.setPosition(new Vec2(27, -7));
-            dino1.setAlwaysOutline(true);
 
         }
 
@@ -158,7 +160,6 @@ public class Level3 extends GameLevel
             dino2 = new WalkEnemy(this);
             dino2.Dino(dino2);
             dino2.setPosition(new Vec2(27, -7));
-            dino2.setAlwaysOutline(true);
         }
         if (spawn == 280) {
             warning = new Warning(this);
@@ -185,7 +186,8 @@ public class Level3 extends GameLevel
         if (spawn == 480) {
             flyer3 = new Flyer(this);
             flyer3.DinoLToR(flyer3);
-
+            Coins coin1 = new Coins(this);
+            coin1.setPosition(new Vec2(20f, 0f));
         }
         if (spawn == 520) {
             warning = new Warning(this);
@@ -197,6 +199,8 @@ public class Level3 extends GameLevel
             MeteorCollision mc = new MeteorCollision(meteor2, getPlayer());
             meteor2.addCollisionListener(mc);
             meteor2.setPosition(new Vec2(-16,30));
+            Hearts heart1 = new Hearts(this);
+            heart1.setPosition(new Vec2(20f, 0f));
 
         }
 
@@ -212,7 +216,6 @@ public class Level3 extends GameLevel
             flyer4 = new Flyer(this);
             flyer4.Dino(flyer4);
 
-            System.out.println("Spawn timer 4!");
         }
         if (spawn == 750){
             death = new DeathBall(this);

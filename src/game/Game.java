@@ -23,7 +23,7 @@ public class Game {
     private static GameLevel level;
     private static boolean plot;
     private static boolean controls;
-    public SoundClip gameMusic;
+    public static SoundClip gameMusic;
     public SoundClip gameMusic2;
     public SoundClip gameMusic3;
     public SoundClip gameMusic4;
