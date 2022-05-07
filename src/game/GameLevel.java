@@ -32,7 +32,7 @@ public abstract class GameLevel extends World {
         flag = new Flag(this);
         getFlag().setPosition(new Vec2(200, -10));
         player.addCollisionListener(new FlagEncounter(this, game));
-        StepListener tracker = new Tracker(view, this.getPlayer());
+        StepListener tracker = new Tracker(view, getPlayer());
         this.addStepListener(tracker);
 
     }

@@ -19,7 +19,7 @@ public class PlayerController implements KeyListener {
     private static int pause = 0;
     private Player player;
     private final Game game;
-    private static  float WALKING_SPEED = 20;
+    private static final float WALKING_SPEED = 20;
     private static final float RUNNING_SPEED = 40;
     private static final float JUMP_SPEED = 40;
     private static final Vec2 DOWN = new Vec2(0,-5);
@@ -72,7 +72,7 @@ public class PlayerController implements KeyListener {
         int code = e.getKeyCode();
         // other key commands omitted
 
-        if(!player.isShip()) {
+        if(!Player.isShip()) {
             if (code == KeyEvent.VK_A) {
                 player.startWalking(-WALKING_SPEED);
 
@@ -86,7 +86,7 @@ public class PlayerController implements KeyListener {
                     if (right) {
 
                         player.addImage(jump);
-                        if (player.getPosition().y > -4 && !player.isJumped() && player.getBackpack().getCurrentItem().getType() == "JumpBoots") {
+                        if (player.getPosition().y > -4 && !player.isJumped() && Player.getBackpack().getCurrentItem().getType() == "JumpBoots") {
                             player.setLinearVelocity(new Vec2(0, 40));
                             player.removeAllImages();
                             player.addImage(jump);
@@ -95,7 +95,7 @@ public class PlayerController implements KeyListener {
                     }
                     else if (left){
                         player.addImage(jumpL);
-                        if (player.getPosition().y > -4 && !player.isJumped() && player.getBackpack().getCurrentItem().getType() == "JumpBoots") {
+                        if (player.getPosition().y > -4 && !player.isJumped() && Player.getBackpack().getCurrentItem().getType() == "JumpBoots") {
                             player.setLinearVelocity(new Vec2(0, 40));
                             player.removeAllImages();
                             player.addImage(jumpL);
@@ -114,7 +114,7 @@ public class PlayerController implements KeyListener {
                 }
                 //player.shoot();
             } else if (code == KeyEvent.VK_Q) {
-                player.getBackpack().toggle();
+                Player.getBackpack().toggle();
             }
         /*else if (code == KeyEvent.VK_F){
             player.getBackpack().getCurrentItem().operate();
@@ -127,7 +127,7 @@ public class PlayerController implements KeyListener {
 
         }
 
-        if (player.isShip()){
+        if (Player.isShip()){
             if (code == KeyEvent.VK_A) {
                 player.setLinearVelocity(new Vec2(-15,0));
 
@@ -156,10 +156,10 @@ public class PlayerController implements KeyListener {
 
             }
              else if (code == KeyEvent.VK_Q) {
-                player.getBackpack().toggle();
+                Player.getBackpack().toggle();
             }
             else if (code == KeyEvent.VK_F){
-            player.getBackpack().getCurrentItem().operate();
+            Player.getBackpack().getCurrentItem().operate();
             }
             else if (code == KeyEvent.VK_ESCAPE) {
                 game.toggleMenu();
@@ -181,7 +181,7 @@ public class PlayerController implements KeyListener {
             try {
                 HighScoreWriter fw = new HighScoreWriter("data/HiScores.txt");
                 if (player.isHasName()) {
-                    fw.writeHighScore(player.getName(), player.getCoinsCollected());
+                    fw.writeHighScore(player.getName(), Player.getCoinsCollected());
                 } else {
                     System.out.println("You have to complete a run before submitting a score!");
                 }
@@ -196,7 +196,7 @@ public class PlayerController implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         // other key commands omitted
-        if (!player.isShip()) {
+        if (!Player.isShip()) {
             if (code == KeyEvent.VK_A) {
                 player.stopWalking();
                 /*WALKING_SPEED = 10;*/
@@ -227,7 +227,7 @@ public class PlayerController implements KeyListener {
             }
         }
 
-        if (player.isShip()) {
+        if (Player.isShip()) {
             if (code == KeyEvent.VK_W) {
                 player.setLinearVelocity(new Vec2(0, 0));
                 player.removeAllImages();

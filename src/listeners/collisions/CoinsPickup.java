@@ -18,7 +18,7 @@ public class CoinsPickup implements CollisionListener {
     @Override
     public void collide(CollisionEvent e) {
         if (e.getOtherBody() instanceof Coins) {
-            player.setCoins(player.getCoinsCollected()+10);
+            Player.setCoins(Player.getCoinsCollected()+10);
             e.getOtherBody().destroy();
         }
         if (e.getOtherBody() instanceof Hearts) {
@@ -29,7 +29,7 @@ public class CoinsPickup implements CollisionListener {
 
         }
         if (e.getOtherBody() instanceof ShotgunPickup) {
-            player.getBackpack().addItem(new Shotgun(player));
+            Player.getBackpack().addItem(new Shotgun(player));
             e.getOtherBody().destroy();
         }
         if ((e.getOtherBody() instanceof Coins)&& e.getReportingBody() instanceof Projectile){

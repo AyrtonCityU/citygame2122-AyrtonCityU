@@ -10,14 +10,14 @@ import game.levels.Level4;
 import org.jbox2d.common.Vec2;
 
 public class BossEncounter implements StepListener {
-    private  GameLevel level;
-    private FinalBoss boss;
-    private  Player player;
+    private final GameLevel level;
+    private final FinalBoss boss;
+    private final Player player;
     private int n;
     private boolean corner = false;
     private boolean idleD = false;
     private boolean idleU = false;
-    private boolean grabLeft = false;
+    private final boolean grabLeft = false;
     private boolean grabRight = false;
     private boolean animation1time = false;
     private boolean pstart = false;

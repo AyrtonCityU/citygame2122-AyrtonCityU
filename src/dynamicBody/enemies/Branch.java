@@ -5,7 +5,9 @@ import city.cs.engine.Shape;
 import city.cs.engine.Walker;
 import org.jbox2d.common.Vec2;
 
-public class Branch extends Walker {
+// Branch "enemy" from level one, simple box shape with branch image
+// Left as walker instead of DynamicBody so easy to do collisions
+public class Branch extends Walker  {
     private static final Shape branchShape = new BoxShape(1F, 1);
 
     private static final BodyImage image =
@@ -15,7 +17,7 @@ public class Branch extends Walker {
         super(world, branchShape);
         addImage(image);
         setLinearVelocity(new Vec2(0, 0));
-        setGravityScale(0.5f);
+        setGravityScale(0.5f); //Falls slowly from the screen so player can dodge
     }
 }
 

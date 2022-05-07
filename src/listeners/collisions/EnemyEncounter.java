@@ -26,7 +26,7 @@ public class EnemyEncounter implements CollisionListener {
                 if (!player.isInvincible()) {
                     player.setPlayerHealth(player.getPlayerHealth() - 1);
                     player.setLinearVelocity(new Vec2(40, 10));
-                    if (!player.isShip()) {
+                    if (!Player.isShip()) {
                         player.removeAllImages();
                         player.addImage(hit);
                     }
@@ -42,7 +42,7 @@ public class EnemyEncounter implements CollisionListener {
             if(!player.isInvincible()) {
                 player.setPlayerHealth(player.getPlayerHealth() - 1);
                 player.setLinearVelocity(new Vec2(20, 10));
-                if (!player.isShip()) {
+                if (!Player.isShip()) {
                     player.removeAllImages();
                     player.addImage(hit);
                 }

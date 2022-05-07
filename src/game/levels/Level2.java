@@ -2,6 +2,7 @@ package game.levels;
 
 import city.cs.engine.*;
 import city.cs.engine.Shape;
+import dynamicBody.Player;
 import dynamicBody.enemies.*;
 import game.Game;
 import game.GameLevel;
@@ -93,8 +94,8 @@ public class Level2 extends GameLevel
         FloorCollision fall = new FloorCollision(getPlayer());
         getPlayer().addCollisionListener(fall);
 
-        getPlayer().getBackpack().addItem(new Gun(getPlayer()));
-        getPlayer().getBackpack().addItem(new JumpBoots(getPlayer()));
+        Player.getBackpack().addItem(new Gun(getPlayer()));
+        Player.getBackpack().addItem(new JumpBoots(getPlayer()));
 
         BranchCollision branchAttack = new BranchCollision(getPlayer());
         getPlayer().addCollisionListener(branchAttack);
@@ -151,7 +152,7 @@ public class Level2 extends GameLevel
 
     @Override
     public boolean isComplete() {
-        return getPlayer().getCoinsCollected() > 0;
+        return Player.getCoinsCollected() > 0;
     }
 
     @Override

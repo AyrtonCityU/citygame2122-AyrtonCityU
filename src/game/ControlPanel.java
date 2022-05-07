@@ -27,11 +27,11 @@ public class ControlPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!musicPaused) {
-                    game.gameMusic.pause();
+                    Game.gameMusic.pause();
                     musicPaused = true;
                 }
                 else if (musicPaused) {
-                    game.gameMusic.loop();
+                    Game.gameMusic.loop();
                     musicPaused = false;
                 }
             }
@@ -59,10 +59,10 @@ public class ControlPanel {
         STORYButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!game.isPlot()){
+                if(!Game.isPlot()){
                     game.setPlot(true);
                 }
-                else if(game.isPlot()){
+                else if(Game.isPlot()){
                     game.setPlot(false);
                 }
 
@@ -71,10 +71,10 @@ public class ControlPanel {
         CONTROLSButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!game.isControls()){
+                if(!Game.isControls()){
                     game.setControls(true);
                 }
-                else if(game.isControls()){
+                else if(Game.isControls()){
                     game.setControls(false);
                 }
             }

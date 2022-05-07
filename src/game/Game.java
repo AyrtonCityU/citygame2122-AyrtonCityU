@@ -65,7 +65,7 @@ public class Game {
     }
 
     public void setPlot(boolean plot) {
-        this.plot = plot;
+        Game.plot = plot;
     }
 
     public static boolean isControls() {
@@ -73,7 +73,7 @@ public class Game {
     }
 
     public void setControls(boolean controls) {
-        this.controls = controls;
+        Game.controls = controls;
     }
 
 
@@ -82,7 +82,7 @@ public class Game {
     }
 
     public void setLevel(GameLevel level) {
-        this.level = level;
+        Game.level = level;
     }
 
     /** Initialise a new Game. */
@@ -171,13 +171,13 @@ public class Game {
         }
 
 
-        controller = new PlayerController(level.getPlayer(), this);
+        controller = new PlayerController(GameLevel.getPlayer(), this);
         view.addKeyListener(controller);
 
-        mouseController = new DirectionalShooting(level.getPlayer(), view);
+        mouseController = new DirectionalShooting(GameLevel.getPlayer(), view);
         view.addMouseListener(mouseController);
 
-        StepListener tracker = new Tracker(view, level.getPlayer());
+        StepListener tracker = new Tracker(view, GameLevel.getPlayer());
         level.addStepListener(tracker);
 
 
@@ -245,8 +245,8 @@ public class Game {
             level = new Level2(this);
             view.setWorld(level);
 
-            controller.updatePlayer(level.getPlayer());
-            mouseController.updatePlayer(level.getPlayer());
+            controller.updatePlayer(GameLevel.getPlayer());
+            mouseController.updatePlayer(GameLevel.getPlayer());
 
             level.start();
             setLevelBackground(2);
@@ -268,8 +268,8 @@ public class Game {
             level = new Level3(this);
             view.setWorld(level);
 
-            controller.updatePlayer(level.getPlayer());
-            mouseController.updatePlayer(level.getPlayer());
+            controller.updatePlayer(GameLevel.getPlayer());
+            mouseController.updatePlayer(GameLevel.getPlayer());
 
             level.start();
             setLevelBackground(3);
@@ -293,8 +293,8 @@ public class Game {
             level = new Level4(this);
             view.setWorld(level);
 
-            controller.updatePlayer(level.getPlayer());
-            mouseController.updatePlayer(level.getPlayer());
+            controller.updatePlayer(GameLevel.getPlayer());
+            mouseController.updatePlayer(GameLevel.getPlayer());
 
             level.start();
             setLevelBackground(4);
@@ -314,15 +314,15 @@ public class Game {
             Scanner myObj = new Scanner(System.in);  // Create a Scanner object
             System.out.println("Enter username");
             String userName = myObj.nextLine();  // Read user input
-            level.getPlayer().setName(userName);
+            GameLevel.getPlayer().setName(userName);
             System.out.println("Username is: " + userName);  // Output user input
             HighScoreWriter fw = new HighScoreWriter("data/HiScores.txt");
             try {
-                fw.writeHighScore(level.getPlayer().getName(), level.getPlayer().getCoinsCollected());
+                fw.writeHighScore(GameLevel.getPlayer().getName(), Player.getCoinsCollected());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            level.getPlayer().setHasName(true);
+            GameLevel.getPlayer().setHasName(true);
             System.out.println("Well done! Game complete.");
             System.exit(0);
         }

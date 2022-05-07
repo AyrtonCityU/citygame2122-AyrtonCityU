@@ -2,6 +2,7 @@ package game.levels;
 
 import city.cs.engine.*;
 import city.cs.engine.Shape;
+import dynamicBody.Player;
 import dynamicBody.enemies.*;
 import game.Game;
 import game.GameLevel;
@@ -80,7 +81,7 @@ public class Level4 extends GameLevel
         FloorCollision fall = new FloorCollision(getPlayer());
         getPlayer().addCollisionListener(fall);
 
-        getPlayer().getBackpack().addItem(new Gun(getPlayer()));
+        Player.getBackpack().addItem(new Gun(getPlayer()));
 
         BranchCollision branchAttack = new BranchCollision(getPlayer());
         getPlayer().addCollisionListener(branchAttack);
@@ -107,7 +108,7 @@ public class Level4 extends GameLevel
 
     @Override
     public boolean isComplete() {
-        return getPlayer().getCoinsCollected() > 0;
+        return Player.getCoinsCollected() > 0;
     }
 
     @Override
@@ -160,7 +161,7 @@ public class Level4 extends GameLevel
             Coins coin1 = new Coins(this);
             coin1.setPosition(new Vec2(20f, 0f));
         }
-        if (spawn == 800 ){
+        if (spawn == 860 ){
             for (int i =0; i<31;i = i+5){
                 flyer1 = new Flyer(this);
                 flyer1.Ice(flyer1);
@@ -172,7 +173,7 @@ public class Level4 extends GameLevel
             coin1.setPosition(new Vec2(20f, 10f));
         }
 
-        if(spawn ==900){
+        if(spawn ==1000){
             Game.gameMusic.pause();
             try {
                bossTheme= new SoundClip("data/finalTheme.wav");
@@ -195,40 +196,40 @@ public class Level4 extends GameLevel
             addStepListener(be);
             boss.setIdle(true);
         }
-        if(spawn ==1000){
+        if(spawn ==1100){
             boss.setPosition(new Vec2(18,18));
             boss.setIdle(false);
             boss.setGrab(true);
         }
-        if(spawn == 1300){
+        if(spawn == 1200){
             boss.setPunch(true);
         }
 
-        if(spawn == 1500){
+        if(spawn == 1600){
             boss.setShoot(true);
         }
-        if(spawn == 1650){
+        if(spawn == 1750){
             boss.setShoot(true);
         }
-        if(spawn == 1700){
+        if(spawn == 1800){
             boss.setShoot(true);
         }
-        if(spawn ==1800){
+        if(spawn ==1900){
             boss.setPosition(new Vec2(18,18));
             boss.setIdle(false);
             boss.setGrab(true);
         }
-        if(spawn == 2100){
+        if(spawn == 2200){
             boss.setPunch(true);
         }
 
-        if(spawn == 2300){
-            boss.setShoot(true);
-        }
-        if(spawn == 2350){
-            boss.setShoot(true);
-        }
         if(spawn == 2400){
+            boss.setShoot(true);
+        }
+        if(spawn == 2450){
+            boss.setShoot(true);
+        }
+        if(spawn == 2500){
             boss.setShoot(true);
         }
 

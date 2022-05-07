@@ -55,7 +55,7 @@ public class Level1  extends GameLevel
     }
 
     public void setSpawn(int spawn) {
-        this.spawn = spawn;
+        Level1.spawn = spawn;
     }
 
     public static int spawn = 0;
@@ -116,8 +116,8 @@ public class Level1  extends GameLevel
             FloorCollision fall = new FloorCollision(getPlayer());
             getPlayer().addCollisionListener(fall);
 
-            getPlayer().getBackpack().addItem(new Gun(getPlayer()));
-            getPlayer().getBackpack().addItem(new JumpBoots(getPlayer()));
+            Player.getBackpack().addItem(new Gun(getPlayer()));
+            Player.getBackpack().addItem(new JumpBoots(getPlayer()));
 
 
             BranchCollision branchAttack = new BranchCollision(getPlayer());
@@ -150,7 +150,7 @@ public class Level1  extends GameLevel
         }
         @Override
         public boolean isComplete() {
-            return getPlayer().getCoinsCollected() > 0;
+            return Player.getCoinsCollected() > 0;
         }
     @Override
     public void actionPerformed(ActionEvent ae) {

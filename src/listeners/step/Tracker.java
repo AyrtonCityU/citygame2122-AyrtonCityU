@@ -1,12 +1,15 @@
 package listeners.step;
 
 import city.cs.engine.BodyImage;
+import city.cs.engine.SoundClip;
 import city.cs.engine.StepEvent;
 import city.cs.engine.StepListener;
 import dynamicBody.Player;
 import game.*;
 import game.levels.Level1;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -15,6 +18,7 @@ public class Tracker implements StepListener {
     private final Player player;
     private int invTime;
     private boolean timeRecorded = false;
+    private SoundClip hurt;
     private GameLevel level;
     private static final BodyImage hit =
             new BodyImage("data/pHit.gif", 5.5f);
@@ -34,7 +38,7 @@ public class Tracker implements StepListener {
             System.out.println("Username is: " + userName);  // Output user input
             HighScoreWriter fw = new HighScoreWriter("data/HiScores.txt");
             try {
-                fw.writeHighScore(player.getName(), player.getCoinsCollected());
+                fw.writeHighScore(player.getName(), Player.getCoinsCollected());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -45,18 +49,24 @@ public class Tracker implements StepListener {
         }
 
         if (player.isInvincible()){
+            try {
+                hurt = new SoundClip("data/hurt.wav");
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException l) {
+                System.out.println(l);
+            }
             if (!timeRecorded){
                 invTime = Level1.getSpawn();
                 timeRecorded = true;
+                hurt.play();
             }
-            if (!player.isShip()) {
+            if (!Player.isShip()) {
                 player.removeAllImages();
                 player.addImage(hit);
             }
                 if (Level1.getSpawn() - invTime == 20) {
                     timeRecorded = false;
                     player.setInvincible(false);
-                    if (!player.isShip()) {
+                    if (!Player.isShip()) {
                         player.removeAllImages();
                         player.addImage(idle);
                     }

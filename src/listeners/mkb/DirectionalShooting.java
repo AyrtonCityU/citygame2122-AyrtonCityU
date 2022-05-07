@@ -41,7 +41,7 @@ public class DirectionalShooting implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Vec2 worldPoint = view.viewToWorld(e.getPoint());
-        if (!player.isShip()) {
+        if (!Player.isShip()) {
 
             if (Player.getBackpack().getCurrentItem().getType() == "Gun") {
                 shotSound.play();

@@ -30,16 +30,16 @@ public class ProjectileCollision implements CollisionListener{
         if (collisionEvent.getOtherBody() instanceof WalkEnemy) {
             collisionEvent.getOtherBody().destroy();
             collisionEvent.getReportingBody().destroy();
-            player.setCoins(player.getCoinsCollected()+5);
+            Player.setCoins(Player.getCoinsCollected()+5);
         }
         if (collisionEvent.getOtherBody() instanceof Flyer) {
             collisionEvent.getOtherBody().destroy();
             collisionEvent.getReportingBody().destroy();
-            if (!player.isShip()) {
+            if (!Player.isShip()) {
                 collisionEvent.getReportingBody().destroy();
-                player.setCoins(player.getCoinsCollected() + 5);
+                Player.setCoins(Player.getCoinsCollected() + 5);
             }
-            player.setCoins(player.getCoinsCollected() + 5);
+            Player.setCoins(Player.getCoinsCollected() + 5);
 
 
 
@@ -57,7 +57,7 @@ public class ProjectileCollision implements CollisionListener{
             FinalBoss.setBossHp(FinalBoss.getBossHp()-1);
             if (FinalBoss.getBossHp()==0){
                 collisionEvent.getOtherBody().destroy();
-                player.setCoins(player.getCoinsCollected()+100);
+                Player.setCoins(Player.getCoinsCollected()+100);
             }
         }
         if (collisionEvent.getOtherBody() instanceof Coins) {

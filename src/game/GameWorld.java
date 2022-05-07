@@ -84,8 +84,8 @@ public class GameWorld extends World
         FloorCollision fall = new FloorCollision(player);
         player.addCollisionListener(fall);
 
-        player.getBackpack().addItem(new Gun(player));
-        player.getBackpack().addItem(new JumpBoots(player));
+        Player.getBackpack().addItem(new Gun(player));
+        Player.getBackpack().addItem(new JumpBoots(player));
 
         BranchCollision branchAttack = new BranchCollision(player);
         player.addCollisionListener(branchAttack);
