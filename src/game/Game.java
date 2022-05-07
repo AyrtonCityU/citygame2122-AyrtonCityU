@@ -18,60 +18,65 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import javax.swing.JFrame;
 
+/**Class to run the game*/
 public class Game {
 
     private static GameLevel level;
     private static boolean plot;
     private static boolean controls;
+    /**gameMusic that is changed throughout the game*/
     public static SoundClip gameMusic;
+    /**Pause variable*/
     public static int pause = 1;
+    /**pscore is used to save the players score at the end of each elvel*/
     public int pscore = 0;
+    /**GameView object to*/
     public static GameView view;
     private Game game;
     private final PlayerController controller;
     private final DirectionalShooting mouseController;
     private boolean gameOver;
+    /**The initial level background is for level 1*/
     public static int levelBackground = 1;
+    /**The initial level song is for level 1*/
     public static int levelSong = 1;
     private boolean menuVisible;
     private final ControlPanel controlPanel;
+    /**JFrame which is used to view the game*/
     public static JFrame frame;
 
-    public static void setPause() {
-        pause = 1;
-    }
-    public int getPause() {
-        return pause;
-    }
-
+    /**Gets the background for current level*/
     public static int getLevelBackground() {
         return levelBackground;
     }
+    /**Sets the background for current level*/
     public void setLevelBackground(int levelBackground) {
         Game.levelBackground = levelBackground;
     }
 
+    /**Checks if the game is currently in plot mode*/
     public static boolean isPlot() {
         return plot;
     }
-
+    /**Sets the game to plot (so the plot can be shown)*/
     public void setPlot(boolean plot) {
         Game.plot = plot;
     }
 
+    /**Checks if the game is currently in controls mode*/
     public static boolean isControls() {
         return controls;
     }
-
+    /**Sets the game to controls (so the controls can be shown)*/
     public void setControls(boolean controls) {
         Game.controls = controls;
     }
 
-
+    /**Gets the current game level */
     public static GameLevel getLevel() {
         return level;
     }
-
+    /**Sets the current game level*/
     public void setLevel(GameLevel level) {
         Game.level = level;
     }
@@ -146,15 +151,16 @@ public class Game {
 
     }
 
+    /**Checks if there's a game over*/
     public boolean isGameOver() {
         return gameOver;
     }
-
+    /**Sets the game to game over mode*/
     public void setGameOver(boolean over){
         gameOver = over;
         level.stop();
         }
-
+    /**Toggles the game menu*/
     public void toggleMenu(){
         if(menuVisible) {
             //hide menu
@@ -179,6 +185,7 @@ public class Game {
         }
     }
 
+    /**Method to go to the next level*/
     public void goToNextLevel(){
         if (level instanceof Level1){
             pscore = Player.getCoinsCollected();

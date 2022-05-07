@@ -9,7 +9,7 @@ import game.GameLevel;
 import game.levels.Level4;
 import org.jbox2d.common.Vec2;
 
-//Final boss listener
+/**Final boss listener*/
 public class BossEncounter implements StepListener {
     private final GameLevel level;
     private final FinalBoss boss;
@@ -26,14 +26,19 @@ public class BossEncounter implements StepListener {
     private boolean pstart = false;
     private boolean shot = true;
     private boolean bossReturn = false;
+    /**Check to record animation 2 time*/
     public boolean animation2time = false;
 
     //Boss movement frequencies
+    /**Amplitude of bossgrab sine wave*/
     public float amplitude = 10;
+    /**Frequency of bossgrab sine wave*/
     public float frequency = 0.3F;
 
     //Ints used for animation timing
+    /**used for getting the time of the first animation*/
     public int animation1 = 0;
+    /**used for getting the time of the second animation*/
     public int animation2 = 0;
 
     //Many images
@@ -54,15 +59,16 @@ public class BossEncounter implements StepListener {
     private static final BodyImage hurt =
             new BodyImage("data/bossHurt.gif", 12f);
 
-
+    /** Creates the BossEncounter steplistener*/
     public BossEncounter(GameLevel level, FinalBoss boss, Player player) {
         this.level = level;
         this.boss = boss;
         this.player = player;
     }
-    public void preStep(StepEvent e) {        //System.out.println(new Vec2(enemy.getPosition()));
+    /**Nothing before each step*/
+    public void preStep(StepEvent e) {
     }
-
+    /**Does the following after each step*/
     public void postStep(StepEvent e) {
         n++;
 
