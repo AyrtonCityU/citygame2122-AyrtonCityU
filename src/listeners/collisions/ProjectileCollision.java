@@ -18,9 +18,6 @@ import static game.Level4.boss;
 
 public class ProjectileCollision implements CollisionListener{
     public Projectile projectile;
-    public WalkEnemy enemy;
-    public WalkEnemy penguin;
-    private Flyer flyer;
     public Player player;
     public ProjectileCollision(Player s){
         this.player = s;

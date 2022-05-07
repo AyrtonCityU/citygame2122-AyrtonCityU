@@ -47,7 +47,16 @@ public class Level1  extends GameLevel
     public boolean hasSpawn1 = false;
     public static Branch branch1;
     private final Timer timer;
-    private int spawn = 0;
+
+    public static int getSpawn() {
+        return spawn;
+    }
+
+    public void setSpawn(int spawn) {
+        this.spawn = spawn;
+    }
+
+    public static int spawn = 0;
     public static Warning warning;
 
 

@@ -1,19 +1,26 @@
 package listeners.step;
 
+import city.cs.engine.BodyImage;
 import city.cs.engine.StepEvent;
 import city.cs.engine.StepListener;
+import com.sun.source.tree.WhileLoopTree;
 import dynamicBody.Player;
-import game.Game;
-import game.GameView;
-import game.HighScoreWriter;
-import game.NameInput;
+import game.*;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class Tracker implements StepListener {
     private final GameView view;
     private final Player player;
+    private int invTime;
+    private boolean timeRecorded = false;
+    private GameLevel level;
+    private static final BodyImage hit =
+            new BodyImage("data/pHit.gif", 5.5f);
+    private static final BodyImage idle =
+            new BodyImage("data/pIdle.gif", 5.5f);
     public Tracker(GameView view, Player player) {
         this.view = view;
         this.player = player;
@@ -37,6 +44,25 @@ public class Tracker implements StepListener {
         if (player.getPosition().y < -5){
             player.setJumped(false);
         }
+
+        if (player.isInvincible()){
+            if (!timeRecorded){
+                invTime = Level1.getSpawn();
+                timeRecorded = true;
+            }
+            player.removeAllImages();
+            player.addImage(hit);
+            if (Level1.getSpawn()-invTime == 20){
+                timeRecorded = false;
+                player.setInvincible(false);
+                player.removeAllImages();
+                player.addImage(idle);
+
+            }
+
+        }
+
+
 
 /*
         System.out.println(player.getPosition());

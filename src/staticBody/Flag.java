@@ -12,10 +12,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Flag extends StaticBody {
-    private static final Shape flagShape = new BoxShape(1f,2f);
+    private static final Shape flagShape = new BoxShape(1f,3f);
 
     private static final BodyImage image =
-            new BodyImage("data/portal.gif", 4f);
+            new BodyImage("data/portal.gif", 6f);
 
     public Flag(World world) {
         super(world, flagShape);

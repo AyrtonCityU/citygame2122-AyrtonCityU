@@ -57,6 +57,15 @@ public class Player extends Walker {
         Player.ship = ship;
     }
 
+    public boolean isInvincible() {
+        return invincible;
+    }
+
+    public void setInvincible(boolean invincible) {
+        this.invincible = invincible;
+    }
+
+    public boolean invincible;
 
     public String direction;
 

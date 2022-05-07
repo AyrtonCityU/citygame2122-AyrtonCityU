@@ -21,7 +21,7 @@ import java.awt.event.ActionListener;
 public class Level4 extends GameLevel
         implements ActionListener {
 
-    private static int spawn;
+    public static int spawn;
     public Vec2 walkerPos1;
     public static Flyer flyer1;
     public static Flyer flyer2;
@@ -45,9 +45,9 @@ public class Level4 extends GameLevel
         return spawn;
     }
 
-    public void setSpawn(int spawn) {
+ /*   public void setSpawn(int spawn) {
         this.spawn = spawn;
-    }
+    }*/
 
     public static Warning warning;
     public static FinalBoss boss;
