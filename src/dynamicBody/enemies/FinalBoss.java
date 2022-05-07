@@ -3,8 +3,6 @@ package dynamicBody.enemies;
 import city.cs.engine.*;
 import dynamicBody.BossProjectile;
 import game.GameLevel;
-import game.Level4;
-import listeners.collisions.ProjectileCollision;
 import org.jbox2d.common.Vec2;
 
 public class FinalBoss extends Walker {

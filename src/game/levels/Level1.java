@@ -1,4 +1,4 @@
-package game;
+package game.levels;
 
 import city.cs.engine.*;
 import city.cs.engine.StepListener;
@@ -9,6 +9,8 @@ import dynamicBody.enemies.Branch;
 import dynamicBody.enemies.Flyer;
 import dynamicBody.enemies.TreeFlying;
 import dynamicBody.enemies.WalkEnemy;
+import game.Game;
+import game.GameLevel;
 import items.Gun;
 import items.JumpBoots;
 import items.Shotgun;
@@ -116,7 +118,7 @@ public class Level1  extends GameLevel
 
             getPlayer().getBackpack().addItem(new Gun(getPlayer()));
             getPlayer().getBackpack().addItem(new JumpBoots(getPlayer()));
-            getPlayer().getBackpack().addItem(new Shotgun(getPlayer()));
+
 
             BranchCollision branchAttack = new BranchCollision(getPlayer());
             getPlayer().addCollisionListener(branchAttack);
@@ -193,7 +195,11 @@ public class Level1  extends GameLevel
             Hearts heart1 = new Hearts(this);
             heart1.setPosition(new Vec2(20f, 0f));
         }
-        if(spawn==400){
+        if (spawn == 400){
+            ShotgunPickup shotgun = new ShotgunPickup(this);
+            shotgun.setPosition(new Vec2(20f, -5f));
+        }
+        if(spawn==500){
 
             flyer3 = new Flyer(this);
             flyer3.setPosition(new Vec2(21, 0));
@@ -205,17 +211,17 @@ public class Level1  extends GameLevel
 
             System.out.println("Spawn timer 3!");
         }
-        if (spawn == 500){
+        if (spawn == 600){
             walker2 = new WalkEnemy(this);
             walker2.GFlip(walker2);
             walker3 = new WalkEnemy(this);
             walker3.setPosition(new Vec2(45, -7));
         }
-        if (spawn==620){
+        if (spawn==720){
             warning = new Warning(this);
             warning.setPosition(new Vec2(16,0));
         }
-        if(spawn==650){
+        if(spawn==750){
             warning.destroy();
 
             TreeFlying tree = new TreeFlying(this);

@@ -2,17 +2,17 @@ package game;
 
 import city.cs.engine.*;
 import dynamicBody.Player;
-import dynamicBody.enemies.FinalBoss;
+import game.levels.Level1;
+import game.levels.Level2;
+import game.levels.Level3;
+import game.levels.Level4;
 import listeners.mkb.DirectionalShooting;
 import listeners.mkb.PlayerController;
-import listeners.step.BossZoom;
-import listeners.step.EnemyTracker;
 import listeners.step.Tracker;
 
 import java.awt.*;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -21,6 +21,8 @@ import javax.swing.JFrame;
 public class Game {
 
     private static GameLevel level;
+    private static boolean plot;
+    private static boolean controls;
     public SoundClip gameMusic;
     public SoundClip gameMusic2;
     public SoundClip gameMusic3;
@@ -57,6 +59,22 @@ public class Game {
     private boolean menuVisible;
     private final ControlPanel controlPanel;
     public static JFrame frame;
+
+    public static boolean isPlot() {
+        return plot;
+    }
+
+    public void setPlot(boolean plot) {
+        this.plot = plot;
+    }
+
+    public static boolean isControls() {
+        return controls;
+    }
+
+    public void setControls(boolean controls) {
+        this.controls = controls;
+    }
 
 
     public static GameLevel getLevel() {

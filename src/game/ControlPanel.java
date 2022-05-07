@@ -13,6 +13,8 @@ public class ControlPanel {
     private JButton muteMusicButton;
     private JButton easyModeButton;
     private JButton quitButton;
+    private JButton STORYButton;
+    private JButton CONTROLSButton;
     private PlayerController controller;
 
     private final Game game;
@@ -52,6 +54,29 @@ public class ControlPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+        });
+        STORYButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!game.isPlot()){
+                    game.setPlot(true);
+                }
+                else if(game.isPlot()){
+                    game.setPlot(false);
+                }
+
+            }
+        });
+        CONTROLSButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!game.isControls()){
+                    game.setControls(true);
+                }
+                else if(game.isControls()){
+                    game.setControls(false);
+                }
             }
         });
     }

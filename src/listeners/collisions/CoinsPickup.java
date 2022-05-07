@@ -4,8 +4,10 @@ import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
 import dynamicBody.Player;
 import dynamicBody.Projectile;
+import items.Shotgun;
 import staticBody.Coins;
 import staticBody.Hearts;
+import staticBody.ShotgunPickup;
 
 public class CoinsPickup implements CollisionListener {
     private final Player player;
@@ -25,6 +27,10 @@ public class CoinsPickup implements CollisionListener {
             }
             e.getOtherBody().destroy();
 
+        }
+        if (e.getOtherBody() instanceof ShotgunPickup) {
+            player.getBackpack().addItem(new Shotgun(player));
+            e.getOtherBody().destroy();
         }
         if ((e.getOtherBody() instanceof Coins)&& e.getReportingBody() instanceof Projectile){
             e.getReportingBody().destroy();

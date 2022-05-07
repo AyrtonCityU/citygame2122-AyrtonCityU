@@ -1,14 +1,14 @@
-package game;
+package game.levels;
 
 import city.cs.engine.*;
 import city.cs.engine.Shape;
-import dynamicBody.Projectile;
 import dynamicBody.enemies.*;
+import game.Game;
+import game.GameLevel;
 import items.Gun;
 import items.JumpBoots;
 import listeners.collisions.*;
 import listeners.step.BossEncounter;
-import listeners.step.IceBossEncounter;
 import org.jbox2d.common.Vec2;
 import staticBody.*;
 

@@ -3,13 +3,12 @@ package listeners.step;
 import city.cs.engine.BodyImage;
 import city.cs.engine.StepEvent;
 import city.cs.engine.StepListener;
-import com.sun.source.tree.WhileLoopTree;
 import dynamicBody.Player;
 import game.*;
+import game.levels.Level1;
 
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
 
 public class Tracker implements StepListener {
     private final GameView view;

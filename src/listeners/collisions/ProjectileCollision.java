@@ -2,19 +2,17 @@ package listeners.collisions;
 
 import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
-import dynamicBody.BossProjectile;
 import dynamicBody.Player;
 import dynamicBody.Projectile;
 import dynamicBody.enemies.FinalBoss;
 import dynamicBody.enemies.Flyer;
 import dynamicBody.enemies.Snowball;
 import dynamicBody.enemies.WalkEnemy;
-import org.jbox2d.common.Vec2;
 import staticBody.Coins;
 import staticBody.Hearts;
 import staticBody.Truck;
 
-import static game.Level4.boss;
+import static game.levels.Level4.boss;
 
 public class ProjectileCollision implements CollisionListener{
     public Projectile projectile;

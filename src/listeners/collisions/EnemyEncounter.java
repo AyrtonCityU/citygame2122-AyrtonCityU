@@ -4,12 +4,11 @@ import city.cs.engine.BodyImage;
 import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
 import city.cs.engine.DynamicBody;
-import dynamicBody.BossProjectile;
 import dynamicBody.Player;
 import dynamicBody.enemies.*;
 import org.jbox2d.common.Vec2;
 
-import static game.Level4.boss;
+import static game.levels.Level4.boss;
 
 public class EnemyEncounter implements CollisionListener {
     private final Player player;

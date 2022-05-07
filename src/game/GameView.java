@@ -1,10 +1,9 @@
 package game;
-import city.cs.engine.BodyImage;
-import city.cs.engine.BoxShape;
-import city.cs.engine.Shape;
 import dynamicBody.Player;
 import city.cs.engine.UserView;
 import dynamicBody.enemies.FinalBoss;
+import game.levels.Level4;
+import items.Backpack;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +27,13 @@ public class GameView extends UserView {
     private final Image bosshp6;
     private final Image bosshp7;
     private final Image score;
+    private final Image controls;
+    private final Image plot;
+    private final Image boots;
+    private final Image shotgun;
+    private final Image gun;
+
+
 
 
     // private final Image leaves;
@@ -58,6 +64,13 @@ public class GameView extends UserView {
         bosshp6 = new ImageIcon("data/bosshp6.png").getImage();
         bosshp7 = new ImageIcon("data/bosshp7.png").getImage();
         score = new ImageIcon("data/score.png").getImage();
+        controls = new ImageIcon("data/controls.png").getImage();
+        plot = new ImageIcon("data/plot.png").getImage();
+        boots = new ImageIcon("data/boots.png").getImage();
+        shotgun = new ImageIcon("data/shotgun.png").getImage();
+        gun = new ImageIcon("data/gun.png").getImage();
+
+
 
 
     }
@@ -142,16 +155,28 @@ public class GameView extends UserView {
         g.drawImage(score, 700, 3, 60, 50, this);
         g.drawString(Integer.toString(Player.getCoinsCollected()), 790,30);
 
-       /* if (GameLevel.getPlayer().getCoinsCollected() == 0) {
-            g.drawImage(heart, 70, 0, 40, 40, this);
-        } else if (GameLevel.getPlayer().getCoinsCollected() == 1) {
-            repaint();
-            g.drawImage(heart, 70, 0, 40, 40, this);
-            g.drawImage(heart, 90, 0, 40, 40, this);
-        } else if (GameLevel.getPlayer().getCoinsCollected() == 2) {
-            repaint();
-            g.drawImage(ftree, 50, 3, 40, 40, this);
-        }*/
+        if (Game.isPlot()){
+            g.drawImage(plot, 0,0, 1100, 550, this);
+        }
+
+        if (Game.isControls()){
+            g.drawImage(controls, 0,0, 1100, 550, this);
+        }
+
+       /* g.drawImage(gun, 170, 2, 70, 50, this);
+        g.drawImage(boots, 230, 2, 40, 50, this);
+        g.drawImage(shotgun, 260, 4, 120, 50, this);*/
+
+        if (Player.getBackpack().getCurrentItem().getType()=="Gun"){
+            g.drawImage(gun, 170, 2, 105, 75, this);
+        }
+        if (Player.getBackpack().getCurrentItem().getType()=="Shotgun"){
+            g.drawImage(shotgun, 170, 2, 140, 100, this);
+        }
+        if (Player.getBackpack().getCurrentItem().getType()=="Boots"){
+            g.drawImage(gun, 170, 2, 140, 100, this);
+        }
+
 
     }
 }

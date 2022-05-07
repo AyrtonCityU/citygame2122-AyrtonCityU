@@ -1,8 +1,10 @@
-package game;
+package game.levels;
 
 import city.cs.engine.*;
 import city.cs.engine.Shape;
 import dynamicBody.enemies.*;
+import game.Game;
+import game.GameLevel;
 import items.Gun;
 import items.JumpBoots;
 import listeners.collisions.BranchCollision;

@@ -121,6 +121,8 @@ public class PlayerController implements KeyListener {
         }*/
             else if (code == KeyEvent.VK_ESCAPE) {
                 game.toggleMenu();
+                game.setPlot(false);
+                game.setControls(false);
             }
 
         }

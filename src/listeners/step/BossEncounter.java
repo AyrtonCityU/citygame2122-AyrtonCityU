@@ -3,19 +3,11 @@ package listeners.step;
 import city.cs.engine.BodyImage;
 import city.cs.engine.StepEvent;
 import city.cs.engine.StepListener;
-import city.cs.engine.Walker;
 import dynamicBody.Player;
 import dynamicBody.enemies.FinalBoss;
-import dynamicBody.enemies.Flyer;
-import dynamicBody.enemies.IceBoss;
-import dynamicBody.enemies.WalkEnemy;
 import game.GameLevel;
-import game.GameView;
-import game.Level1;
-import game.Level4;
+import game.levels.Level4;
 import org.jbox2d.common.Vec2;
-
-import javax.swing.*;
 
 public class BossEncounter implements StepListener {
     private  GameLevel level;

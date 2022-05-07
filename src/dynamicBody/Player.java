@@ -5,16 +5,14 @@ import city.cs.engine.Shape;
 import city.cs.engine.Walker;
 import game.Game;
 import game.GameLevel;
-import game.Level4;
-import game.NameInput;
+import game.levels.Level4;
 import items.Backpack;
 import listeners.collisions.ProjectileCollision;
 import org.jbox2d.common.Vec2;
 
-import java.util.logging.Level;
-
 public class Player extends Walker {
     private static int coinsCollected;
+    private static Backpack backpack;
     private Game game;
     private static final Shape playerShape = new PolygonShape(0.33f,2.23f,
             -0.16f,2.22f,
@@ -81,7 +79,6 @@ public class Player extends Walker {
 
     public String name;
 
-    private final Backpack backpack;
 
     public void setPlayerHealth (int playerHealth){
         Player.playerHealth = playerHealth;
@@ -158,7 +155,7 @@ public class Player extends Walker {
         }
     }
 
-    public Backpack getBackpack(){
+    public static Backpack getBackpack(){
         return backpack;
     }
 

@@ -5,9 +5,6 @@ import city.cs.engine.StepListener;
 import city.cs.engine.Walker;
 import dynamicBody.enemies.WalkEnemy;
 import game.GameLevel;
-import game.GameView;
-import game.Level1;
-import org.jbox2d.common.Vec2;
 
 public class EnemyTracker implements StepListener {
     private final GameLevel level;
