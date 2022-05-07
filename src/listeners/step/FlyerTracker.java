@@ -13,8 +13,7 @@ import org.jbox2d.common.Vec2;
 public class FlyerTracker implements StepListener {
     private final GameLevel level;
     private final Flyer flyer;
-    float sinCenterY;
-    public float amplitude = 3;
+    public float amplitude = 3; //Amplitude of default bird movement
     public float frequency = 0.5F;
     private Player player;
 
@@ -29,6 +28,7 @@ public class FlyerTracker implements StepListener {
     }
     public void postStep(StepEvent e){
 
+    //Different frequency and amplitude if Ice or UFO
     if (flyer.isIce()){
         frequency = 0.2f;
         amplitude = 4f;
@@ -39,6 +39,7 @@ public class FlyerTracker implements StepListener {
             amplitude = 7f;
         }
 
+    //Evil flyer slowly moves left until x is <18, then it rapidly moves to the left
     if (flyer.isEvil()){
         if (flyer.getPosition().x >18){
             flyer.setLinearVelocity(new Vec2(-2, 0));
@@ -49,15 +50,17 @@ public class FlyerTracker implements StepListener {
     }
 
 
+    //Following 3 lines are used to make the flyers follow a sine wave movement
     Vec2 pos = new Vec2(flyer.getPosition());
-
     float sin = (float) Math.sin(pos.x * frequency) * amplitude;
     pos.y = sin;
 
+    //Only applied to non-dino/lava/evil flyers
     if ((!flyer.isLava())&&(!flyer.isDino())&&(!flyer.evil)){
         flyer.setPosition(pos);
     }
 
+    //Dino flyers fly left and then quickly fly diagonally
     if(flyer.isDino()){
         if (!flyer.isDinoFlip()){
         if ((flyer.getPosition().x< 14)&&(flyer.getPosition().x>13)) {
@@ -67,6 +70,7 @@ public class FlyerTracker implements StepListener {
         }
     }
 
+    //Same idea but flipped
     if(flyer.isDinoFlip()){
         if((flyer.getPosition().x>-14)&&(flyer.getPosition().x<-13)){
             flyer.rotate(-0.10f);

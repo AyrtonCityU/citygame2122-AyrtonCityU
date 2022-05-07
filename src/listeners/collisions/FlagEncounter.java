@@ -15,9 +15,7 @@ public class FlagEncounter implements CollisionListener {
     }
     @Override
     public void collide(CollisionEvent e) {
-        //if student collided with professor and the
-        //conditions for completing the level are fulfilled
-        //goToNextLevel
+        //If player touches the flag(portal) go to next level
         if (e.getOtherBody() instanceof Flag
                 && level.isComplete()){
             game.goToNextLevel();

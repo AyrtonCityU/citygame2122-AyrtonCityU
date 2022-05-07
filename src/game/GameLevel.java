@@ -4,28 +4,16 @@ import city.cs.engine.StepListener;
 import city.cs.engine.World;
 import dynamicBody.Player;
 import listeners.collisions.FlagEncounter;
-import listeners.mkb.DirectionalShooting;
-import listeners.mkb.PlayerController;
+
 import listeners.step.Tracker;
 import org.jbox2d.common.Vec2;
 import staticBody.Flag;
 
+//Default game level class
 public abstract class GameLevel extends World {
     public static Player player;
     public Flag flag;
     public GameView view;
-/*
-    public static int getSpawn() {
-        return spawn;
-    }
-
-    public static void setSpawn(int spawn) {
-        GameLevel.spawn = spawn;
-    }*/
-
-/*
-    public static int spawn;
-*/
 
     public GameLevel(Game game){
         player = new Player(this);

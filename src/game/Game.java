@@ -24,41 +24,32 @@ public class Game {
     private static boolean plot;
     private static boolean controls;
     public static SoundClip gameMusic;
-    public SoundClip gameMusic2;
-    public SoundClip gameMusic3;
-    public SoundClip gameMusic4;
     public static int pause = 1;
+    public int pscore = 0;
+    public static GameView view;
+    private Game game;
+    private final PlayerController controller;
+    private final DirectionalShooting mouseController;
+    private boolean gameOver;
+    public static int levelBackground = 1;
+    public static int levelSong = 1;
+    private boolean menuVisible;
+    private final ControlPanel controlPanel;
+    public static JFrame frame;
+
     public static void setPause() {
         pause = 1;
     }
-    public int pscore = 0;
-
     public int getPause() {
         return pause;
     }
 
-
-    public static GameView view;
-    private Game game;
-
-    private final PlayerController controller;
-    private final DirectionalShooting mouseController;
-    private boolean gameOver;
-
     public static int getLevelBackground() {
         return levelBackground;
     }
-
     public void setLevelBackground(int levelBackground) {
         Game.levelBackground = levelBackground;
     }
-
-    public static int levelBackground = 1;
-    public static int levelSong = 1;
-
-    private boolean menuVisible;
-    private final ControlPanel controlPanel;
-    public static JFrame frame;
 
     public static boolean isPlot() {
         return plot;
@@ -104,31 +95,6 @@ public class Game {
             }
         }
 
-      /*  }
-        else if (levelSong == 2){
-            gameMusic1.stop();
-            try {
-                gameMusic2 = new SoundClip("data/lev2bgm.wav");   // Open an audio input stream
-                gameMusic2.loop();                              // Set it to continous playback (looping)
-            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                //code in here will deal with any errors
-                //that might occur while loading/playing sound
-                System.out.println(e);
-            }
-        }
-        else if(levelSong == 3){
-            gameMusic2.stop();
-            try {
-                gameMusic3 = new SoundClip("data/lev3bgm.wav");   // Open an audio input stream
-                gameMusic3.loop();                              // Set it to continous playback (looping)
-            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                //code in here will deal with any errors
-                //that might occur while loading/playing sound
-                System.out.println(e);
-            }
-        }*/
-
-
         //make a view to look into the game world
         view = new GameView(level, 1100, 550); //1100 550
 
@@ -144,7 +110,6 @@ public class Game {
         view.setFocusable(true);
 
         controlPanel = new ControlPanel(this, view);
-        //frame.add(controlPanel.getMainPanel(), BorderLayout.WEST);
 
         // enable the frame to quit the application
         // when the x button is pressed
@@ -157,20 +122,6 @@ public class Game {
         // finally, make the frame visible
         frame.setVisible(true);
 
-        //optional: uncomment this to make a debugging view
-        //JFrame debugView = new DebugViewer(world, 900, 500);
-
-        // start our game world simulation!
-
-
-
-
-
-        if (PlayerController.isPause() == 1){
-            System.out.println("jeff");
-        }
-
-
         controller = new PlayerController(GameLevel.getPlayer(), this);
         view.addKeyListener(controller);
 
@@ -180,14 +131,7 @@ public class Game {
         StepListener tracker = new Tracker(view, GameLevel.getPlayer());
         level.addStepListener(tracker);
 
-
-
-
-        //StepListener enemytracker = new EnemyTracker(view, level.getWalker());
-        //level.addStepListener(enemytracker);
-
-        System.out.println(PlayerController.isPause());
-
+        //Start the game!
         level.start();
 
 
@@ -209,9 +153,6 @@ public class Game {
     public void setGameOver(boolean over){
         gameOver = over;
         level.stop();
-       /* gameMusic1.stop();
-        gameMusic2.stop();
-        gameMusic3.stop();*/
         }
 
     public void toggleMenu(){

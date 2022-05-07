@@ -11,12 +11,11 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+//This ground is important! It's underneath the trucks and if you touch it you die
 public class Ground extends StaticBody {
     private static final Shape groundShape = new BoxShape(100f, 0.5f);
-
     public Ground(World world) {
         super(world, groundShape);
     }
-
 
 }

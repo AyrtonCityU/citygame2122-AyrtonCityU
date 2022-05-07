@@ -9,6 +9,7 @@ import dynamicBody.enemies.Meteor;
 import staticBody.Coins;
 import staticBody.Truck;
 
+//Meteors from level 3
 public class MeteorCollision implements CollisionListener {
     private final Meteor meteor;
     private final Player player;
@@ -20,12 +21,12 @@ public class MeteorCollision implements CollisionListener {
     @Override
     public void collide(CollisionEvent e) {
         if ((e.getOtherBody() instanceof Player)){
-            player.setPlayerHealth(player.getPlayerHealth()-3);
+            player.setPlayerHealth(player.getPlayerHealth()-3); //Reduce the players health by 3
             e.getOtherBody().destroy();
         }
 
         if ((e.getOtherBody() instanceof Truck)){
-            e.getReportingBody().destroy();
+            e.getReportingBody().destroy(); //Destroy the trucks on impact
             e.getOtherBody().destroy();
         }
 

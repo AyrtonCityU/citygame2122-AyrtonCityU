@@ -13,14 +13,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
+//Directional shooting used in first 3 levels
 public class DirectionalShooting implements MouseListener {
 
     private Player player;
     private final GameView view;
     private Projectile projectile;
-
     private static SoundClip shotSound;
 
+    //Images for shooting left and right
     BodyImage shoot = new BodyImage("data/pShootR2.gif", 5.5f);
     BodyImage shootL = new BodyImage("data/pShootL2.gif", 5.5f);
 
@@ -41,21 +42,22 @@ public class DirectionalShooting implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Vec2 worldPoint = view.viewToWorld(e.getPoint());
-        if (!Player.isShip()) {
+        if (!Player.isShip()) { //Only happens if you're NOT the ship in level 4
 
             if (Player.getBackpack().getCurrentItem().getType() == "Gun") {
                 shotSound.play();
 
-                if (worldPoint.x > player.getPosition().x) {
+                if (worldPoint.x > player.getPosition().x) { //Aiming right so right image
                     player.removeAllImages();
                     player.addImage(shoot);
-                } else if (worldPoint.x < player.getPosition().x) {
+                } else if (worldPoint.x < player.getPosition().x) { //Aiming left so left image
                     player.removeAllImages();
                     player.addImage(shootL);
                 }
 
                 player.shoot(worldPoint);
             }
+
             if (Player.getBackpack().getCurrentItem().getType() == "Shotgun") {
                 shotSound.play();
 
@@ -73,9 +75,7 @@ public class DirectionalShooting implements MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
     public void mouseReleased(MouseEvent e) {

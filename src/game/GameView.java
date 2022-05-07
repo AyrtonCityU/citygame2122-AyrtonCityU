@@ -8,7 +8,9 @@ import items.Backpack;
 import javax.swing.*;
 import java.awt.*;
 
+//View of the game world
 public class GameView extends UserView {
+    //Lots of different images
     private final Image background;
     private final Image background2;
     private final Image background3;
@@ -35,8 +37,8 @@ public class GameView extends UserView {
 
 
 
-
-    // private final Image leaves;
+    //Uncomment the below line to see my overly ambitious attempt at a moving foreground
+    //private final Image leaves;
 
 
     GameWorld world = new GameWorld();
@@ -55,6 +57,7 @@ public class GameView extends UserView {
         berg = new ImageIcon("data/iceberg.png").getImage();
         rock = new ImageIcon("data/rock.png").getImage();
         progress = new ImageIcon("data/progress.gif").getImage();
+        //Uncomment the below line to see my overly ambitious attempt at a moving foreground
         //leaves = new ImageIcon("data/speed.gif").getImage();
         bosshp1 = new ImageIcon("data/bosshp1.png").getImage();
         bosshp2 = new ImageIcon("data/bosshp2.png").getImage();
@@ -94,6 +97,8 @@ public class GameView extends UserView {
     @Override
     protected void paintForeground(Graphics2D g) {
         super.paintForeground(g);
+
+        //Different level backgrounds
         if (Game.getLevelBackground() == 1) {
             g.drawImage(ftree, -240, -200, 500, 900, this);
             g.drawImage(ftree, 800, -200, 500, 900, this);
@@ -106,6 +111,7 @@ public class GameView extends UserView {
             g.drawImage(rock, 900, 300, 410, 500, this);
         }
 
+        //Different amount of hearts depending on player health
         if (player.getPlayerHealth() == 3) {
             g.drawImage(heart, 40, 3, 40, 40, this);
             g.drawImage(heart, 80, 3, 40, 40, this);
@@ -122,12 +128,16 @@ public class GameView extends UserView {
         }
 
         g.drawImage(progress, 400, 0, 183, 58, this);
+
+        //Uncomment the below line to see my overly ambitious attempt at a moving foreground
         //g.drawImage(leaves, 0, 0, 1100, 550, this);
 
+        //GAME OVER if player has no health
         if (player.getPlayerHealth() == 0) {
             g.drawString("GAME OVER", this.getWidth() / 2, this.getHeight() / 2);
         }
 
+        //This displays the bosses health at different amounts
         if (Level4.isBossSpawn()) {
             if(FinalBoss.getBossHp()<31 && FinalBoss.getBossHp()>25) {
                 g.drawImage(bosshp1, 275, 420, 604, 149, this);
@@ -152,18 +162,18 @@ public class GameView extends UserView {
             }
         }
 
+        //If you open the plot menu display plot
         if (Game.isPlot()){
             g.drawImage(plot, 0,0, 1100, 550, this);
         }
 
+        //If you open the control menu display controls
         if (Game.isControls()){
             g.drawImage(controls, 0,0, 1100, 550, this);
         }
 
-       /* g.drawImage(gun, 170, 2, 70, 50, this);
-        g.drawImage(boots, 230, 2, 40, 50, this);
-        g.drawImage(shotgun, 260, 4, 120, 50, this);*/
 
+        //Display current backpack item
         if (Player.getBackpack().getCurrentItem().getType()=="Gun"){
             g.drawImage(gun, 170, 0, 105, 75, this);
         }
@@ -174,6 +184,8 @@ public class GameView extends UserView {
             g.drawImage(boots, 170, 2, 40, 50, this);
         }
 
+
+        //Display score
         g.setColor(Color.yellow);
         g.drawImage(score, 700, 3, 60, 50, this);
         g.drawString(Integer.toString(Player.getCoinsCollected()), 790,30);

@@ -38,14 +38,11 @@ public class Level1  extends GameLevel
     public static WalkEnemy walker1;
     public static WalkEnemy walker2;
     public static WalkEnemy walker3;
-    public static WalkEnemy walker4;
-    public Vec2 walkerPos1;
     public static Flyer flyer1;
     public static Flyer flyer2;
     public static Flyer flyer3;
     public static Flyer flyer4;
     public static Flyer flyer5;
-    public static Flyer flyer6;
     public boolean hasSpawn1 = false;
     public static Branch branch1;
     private final Timer timer;
@@ -159,12 +156,11 @@ public class Level1  extends GameLevel
 
 
         if (spawn==100) {
-
+            //Spawn some flyers
             flyer1 = new Flyer(this);
             flyer2 = new Flyer(this);
             flyer2.LToR(flyer2);
             walker1 = new WalkEnemy(this);
-            //walker1.setAlwaysOutline(true);
             walker1.setPosition(new Vec2(45, -7));
             walker1.startWalking(-8);
 
@@ -173,7 +169,7 @@ public class Level1  extends GameLevel
 
         }
         if (spawn==230 & hasSpawn1){
-            warning = new Warning(this);
+            warning = new Warning(this); //Warning sign
             warning.setPosition(new Vec2(0,10));
         }
         if (spawn==250 & hasSpawn1) {
@@ -181,7 +177,7 @@ public class Level1  extends GameLevel
             warning.destroy();
             for (int i = 0; i<8; i++ ) {
                 branch1 = new Branch(this);
-                branch1.setPosition(new Vec2(-15 + 5*i, (float) ((float) 100*sin(i))));
+                branch1.setPosition(new Vec2(-15 + 5*i, (float) ((float) 100*sin(i)))); //Randomly spawned branches
             }
             for (int i = 0; i<8; i++ ) {
                 branch1 = new Branch(this);
@@ -191,7 +187,7 @@ public class Level1  extends GameLevel
         }
         if(spawn ==300){
             Hearts heart1 = new Hearts(this);
-            heart1.setPosition(new Vec2(20f, 0f));
+            heart1.setPosition(new Vec2(20f, 0f)); //Spawn a heart
         }
         if (spawn == 400){
             ShotgunPickup shotgun = new ShotgunPickup(this);

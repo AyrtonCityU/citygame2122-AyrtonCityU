@@ -7,12 +7,11 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
+//Very very similar to coins class
 public class Hearts extends DynamicBody {
     private static final Shape heartShape = new BoxShape(1f,1f);
-
     private static final BodyImage image =
             new BodyImage("data/heartPickup.gif", 3f);
-
     private static SoundClip heartSound;
 
     static {
@@ -32,7 +31,7 @@ public class Hearts extends DynamicBody {
     @Override
     public void destroy()
     {
-        heartSound.play();
+        heartSound.play(); //Heart sound when collected
         super.destroy();
     }
 

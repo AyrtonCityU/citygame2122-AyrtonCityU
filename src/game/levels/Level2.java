@@ -25,19 +25,15 @@ import java.awt.event.ActionListener;
 public class Level2 extends GameLevel
         implements ActionListener {
 
-    public Vec2 walkerPos1;
     public static Flyer flyer1;
     public static Flyer flyer2;
     public static IceBoss iceBoss;
-    public boolean hasSpawn1 = false;
-    public static Branch branch1;
     private final Timer timer;
     private int spawn = 0;
     public static Warning warning;
     public static Warning bwarning;
     public static WalkEnemy penguin1;
     public static WalkEnemy penguin2;
-    public static WalkEnemy penguin3;
     public static WalkEnemy penguin4;
     public static WalkEnemy penguin5;
 
@@ -110,36 +106,9 @@ public class Level2 extends GameLevel
         platform2.setPosition(new Vec2(128f, -8f));
         platform2.setFillColor(Color.green);
 
-        /*penguin1 = new WalkEnemy(this);
-        penguin1.Penguin(penguin1);
-        penguin1.setPosition(new Vec2(30, -7));
-        penguin1.setAlwaysOutline(true);*/
-
-       /* penguin1 = new WalkEnemy(this);
-        penguin1.fPenguin(penguin1);
-        penguin1.setAlwaysOutline(true);*/
-
-        /*flyer1 = new Flyer(this);
-        flyer1.Ice(flyer1);*/
 
         flyer1 = new Flyer(this);
         flyer1.Ice(flyer1);
-
-        /*iceBoss = new IceBoss(this);
-        iceBoss.setAlwaysOutline(true);
-        new BossDanger(iceBoss);
-        iceBoss.startWalking(-8);
-        *//*Shape bossDangerShape = new BoxShape(3.5f, 4f);
-        SolidFixture bossDanger = new SolidFixture(iceBoss, bossDangerShape);*//*
-        BossEncounter be = new BossEncounter(this, iceBoss, getPlayer());
-        addStepListener(be);*/
-
-      /*  for (int i =0; i<8;i++){
-            snowball = new Snowball(this);
-            snowball.setLinearVelocity(new Vec2(-30, (float) (Math.random()*i)));
-            snowball.setPosition(new Vec2((float) (Math.random()*25)+25,i*2 - 3));
-            snowball.setAlwaysOutline(true);
-        }*/
 
         Coins coin1 = new Coins(this);
         coin1.setPosition(new Vec2(20f, 0f));
@@ -256,9 +225,9 @@ public class Level2 extends GameLevel
 
         }
 
-
         if(spawn==650){
-
+            Coins coin1 = new Coins(this);
+            coin1.setPosition(new Vec2(20f, 0f));
         }
         if(spawn==700) {
             getFlag().setPosition(new Vec2(0,-7));

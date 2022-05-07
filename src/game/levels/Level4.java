@@ -27,11 +27,7 @@ public class Level4 extends GameLevel
         implements ActionListener {
 
     public static int spawn;
-    public Vec2 walkerPos1;
     public static Flyer flyer1;
-    public static Flyer flyer2;
-    public static Flyer flyer3;
-    public boolean hasSpawn1 = false;
     private static SoundClip bossTheme;
 
 
@@ -50,17 +46,7 @@ public class Level4 extends GameLevel
     public static int getSpawn() {
         return spawn;
     }
-
- /*   public void setSpawn(int spawn) {
-        this.spawn = spawn;
-    }*/
-
-    public static Warning warning;
     public static FinalBoss boss;
-
-    /*private final JFrame frame;
-    private final GameView view;*/
-
 
     public Level4(Game game) {
         super(game);
@@ -85,12 +71,6 @@ public class Level4 extends GameLevel
 
         BranchCollision branchAttack = new BranchCollision(getPlayer());
         getPlayer().addCollisionListener(branchAttack);
-
-
-
-/*
-        getPlayer().setAlwaysOutline(true);
-*/
 
         Shape platformShape2 = new BoxShape(100f, 0.5f);
         StaticBody platform2 = new StaticBody(this, platformShape2);

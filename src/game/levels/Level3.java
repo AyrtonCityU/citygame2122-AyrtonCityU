@@ -22,20 +22,15 @@ import java.awt.event.ActionListener;
 public class Level3 extends GameLevel
         implements ActionListener {
 
-    public Vec2 walkerPos1;
     public static LavaFlyer flyer1;
     public static Flyer flyer2;
     public static Flyer flyer3;
     public static Flyer flyer4;
     public static WalkEnemy dino1;
     public static WalkEnemy dino2;
-    public boolean hasSpawn1 = false;
-    public static Branch branch1;
     private final Timer timer;
     private int spawn = 0;
     public static Warning warning;
-    public static WalkEnemy penguin1;
-    public static Snowball snowball;
     public static Meteor meteor1;
     public static Meteor meteor2;
     public static DeathBall death;
@@ -97,29 +92,6 @@ public class Level3 extends GameLevel
         StaticBody platform2 = new StaticBody(this, platformShape2);
         platform2.setPosition(new Vec2(128f, -8f));
         platform2.setFillColor(Color.green);
-
-
-        /*for (int i = 0; i<5;i++){
-            flyer1 = new LavaFlyer(this);
-            flyer1.Lava(flyer1);
-            flyer1.setPosition(new Vec2(16 + i*10, -2 + i*4));
-            LavaFlyerTracker lft = new LavaFlyerTracker(this, flyer1, getPlayer());
-            addStepListener(lft);
-        }*/
-
-
-       /*dino1 = new WalkEnemy(this);
-        dino1.Dino(dino1);
-        dino1.setPosition(new Vec2(27, -7));*/
-
-        /*flyer4 = new Flyer(this);
-        flyer4.Dino(flyer4);*/
-
-        /*meteor1 = new Meteor(this);
-        MeteorCollision mc = new MeteorCollision(meteor1, getPlayer());
-        meteor1.addCollisionListener(mc);
-        meteor1.setAlwaysOutline(false);*/
-
 
         timer = new Timer(50, this);
         timer.start();

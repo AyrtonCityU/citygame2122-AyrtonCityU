@@ -2,10 +2,10 @@ package items;
 
 import java.util.ArrayList;
 
+//Create the players backpack
 public class Backpack {
 
     ArrayList<BackpackItem> items;
-
     private int currentItem;
 
     public String j = "Boots";
@@ -25,7 +25,7 @@ public class Backpack {
         return items.get(currentItem);
     }
 
-    public void toggle(){
+    public void toggle(){ //Toggle the current item
 
         getCurrentItem().takeOff();
         currentItem++;

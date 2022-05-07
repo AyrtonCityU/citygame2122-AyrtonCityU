@@ -31,10 +31,6 @@ public class GameWorld extends World
     private final Player player;
     public static Walker walker1;
     public static Walker walker2;
-    public Vec2 walkerPos1;
-    public static Flyer flyer1;
-    public static Flyer flyer2;
-    public static Flyer flyer3;
     public static Flyer flyer4;
     public static Flyer flyer5;
     public static Flyer flyer6;
@@ -66,9 +62,6 @@ public class GameWorld extends World
         Truck truck3 = new Truck(this);
         truck3.setPosition(new Vec2(24.4f, -14f));
         truck3.setFillColor(Color.blue);
-
-        //truck2.setAlwaysOutline(true);
-        //truck3.setAlwaysOutline(true);
 
 
 

@@ -21,16 +21,12 @@ public class ProjectileCollision implements CollisionListener{
         this.player = s;
     }
 
-
-
-
-
     @Override
     public void collide(CollisionEvent collisionEvent) {
         if (collisionEvent.getOtherBody() instanceof WalkEnemy) {
             collisionEvent.getOtherBody().destroy();
             collisionEvent.getReportingBody().destroy();
-            Player.setCoins(Player.getCoinsCollected()+5);
+            Player.setCoins(Player.getCoinsCollected()+5); //Add 5 score if projectile hits a walk enemy
         }
         if (collisionEvent.getOtherBody() instanceof Flyer) {
             collisionEvent.getOtherBody().destroy();
@@ -39,25 +35,25 @@ public class ProjectileCollision implements CollisionListener{
                 collisionEvent.getReportingBody().destroy();
                 Player.setCoins(Player.getCoinsCollected() + 5);
             }
-            Player.setCoins(Player.getCoinsCollected() + 5);
+            Player.setCoins(Player.getCoinsCollected() + 5); //Add 5 score if projectile hits a flyer
 
 
 
         }
         if (collisionEvent.getOtherBody() instanceof Truck) {
-            collisionEvent.getReportingBody().destroy();
+            collisionEvent.getReportingBody().destroy();//Destroys bullets if they touch trucks
         }
         if (collisionEvent.getOtherBody() instanceof Snowball) {
-            collisionEvent.getOtherBody().destroy();
+            collisionEvent.getOtherBody().destroy(); //Destroys snowballs if bullets touch them
         }
 
         if(collisionEvent.getOtherBody() instanceof FinalBoss){
-            boss.setHurt(true);
+            boss.setHurt(true); //Sets the final boss to hurt (plays the hurt animation)
             collisionEvent.getReportingBody().destroy();
-            FinalBoss.setBossHp(FinalBoss.getBossHp()-1);
+            FinalBoss.setBossHp(FinalBoss.getBossHp()-1); //Reduces health by 1
             if (FinalBoss.getBossHp()==0){
-                collisionEvent.getOtherBody().destroy();
-                Player.setCoins(Player.getCoinsCollected()+100);
+                collisionEvent.getOtherBody().destroy(); //Kills final boss
+                Player.setCoins(Player.getCoinsCollected()+100);//Adds 100 to score
             }
         }
         if (collisionEvent.getOtherBody() instanceof Coins) {

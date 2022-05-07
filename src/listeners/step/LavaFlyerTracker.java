@@ -11,12 +11,12 @@ import dynamicBody.enemies.WalkEnemy;
 import game.GameLevel;
 import org.jbox2d.common.Vec2;
 
+//Tracker for flyer in 3rd level
+
 public class LavaFlyerTracker implements StepListener {
     private final GameLevel level;
     private final LavaFlyer flyer;
-    float sinCenterY;
-    public float amplitude = 3;
-    public float frequency = 0.5F;
+
     private final Player player;
 
 
@@ -26,18 +26,20 @@ public class LavaFlyerTracker implements StepListener {
         this.flyer = flyer;
         this.player = player;
     }
+
     public void preStep(StepEvent e){
     }
+
     public void postStep(StepEvent e){
 
-   if (flyer.getPosition().x < player.getPosition().x ){
-                flyer.setLinearVelocity(new Vec2(0,-10));
+   if (flyer.getPosition().x < player.getPosition().x ){ //If the flyer is directly above the player
+                flyer.setLinearVelocity(new Vec2(0,-10)); //Instantly move down towards the player
                 flyer.removeAllImages();
-                flyer.addImage(new BodyImage("data/lavarock.png", 3.5f));
+                flyer.addImage(new BodyImage("data/lavarock.png", 3.5f));//Add lavarock image
                 flyer.stopWalking();
                 flyer.setGravityScale(10);
             }
-   if (flyer.getPosition().y < -6){
+   if (flyer.getPosition().y < -7){
        flyer.destroy();
    }
         }

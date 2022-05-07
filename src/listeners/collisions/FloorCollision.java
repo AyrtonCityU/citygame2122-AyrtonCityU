@@ -8,6 +8,7 @@ import dynamicBody.enemies.WalkEnemy;
 import org.jbox2d.common.Vec2;
 import staticBody.Ground;
 
+//Kills the player if they touch the ground
 public class FloorCollision implements CollisionListener{
     private final Player player;
     public FloorCollision(Player s){ this.player = s;

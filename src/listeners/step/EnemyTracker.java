@@ -6,6 +6,7 @@ import city.cs.engine.Walker;
 import dynamicBody.enemies.WalkEnemy;
 import game.GameLevel;
 
+//Tracker for walker enemies
 public class EnemyTracker implements StepListener {
     private final GameLevel level;
     private final WalkEnemy enemy;
@@ -14,20 +15,20 @@ public class EnemyTracker implements StepListener {
         this.level = level;
         this.enemy = (WalkEnemy) enemy;
     }
-    public void preStep(StepEvent e) {        //System.out.println(new Vec2(enemy.getPosition()));
+    public void preStep(StepEvent e) {
     }
     public void postStep(StepEvent e) {
 
         //first jump 3 to 2
         if (enemy.getPosition().x < 21 && enemy.getPosition().x >19)
         {
-            if (enemy.isDino()){
+            if (enemy.isDino()){ //Dino walker jumps further than normal
                 enemy.jump(15);
             }
             enemy.jump(8);
 
             if(enemy.isPeng() && !enemy.isPflip()){
-                enemy.rotate(0.1f);
+                enemy.rotate(0.1f); //If it's a penguin (and not flipped) it will rotate 0.1f dTheta
             }
         }
         //second jump 2 to 1
@@ -45,7 +46,7 @@ public class EnemyTracker implements StepListener {
         {
             if (enemy.isFlip()){
                 enemy.jump(8);
-                if (enemy.isPflip()){
+                if (enemy.isPflip()){ //Flipped penguin rotation
                     enemy.rotate(-0.1f);
                 }
             }
@@ -70,17 +71,8 @@ public class EnemyTracker implements StepListener {
             }
         }
 
-/*
-        System.out.println(enemy.getPosition());
-*/
-
-
-            //for (int n = 0; n<1000;n++ ){
-                //if(n== 100){
-                   //enemy.setPosition(new Vec2(45, -7));
-                //}}
-            }
-        }
+    }
+}
 
 
 
